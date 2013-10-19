@@ -9,6 +9,7 @@
 #import "EXQAppDelegate.h"
 #import <SWRevealViewController/SWRevealViewController.h>
 #import "EXQGameCollectionViewController.h"
+#import "EXQTurnBasedMatchHelper.h"
 
 @interface EXQAppDelegate()<SWRevealViewControllerDelegate>
 
@@ -52,6 +53,7 @@
 	
 	self.window.rootViewController = self.viewController;
 	[self.window makeKeyAndVisible];
+    [[EXQTurnBasedMatchHelper sharedInstance] authenticateLocalUser];
 	return YES;
 }
 

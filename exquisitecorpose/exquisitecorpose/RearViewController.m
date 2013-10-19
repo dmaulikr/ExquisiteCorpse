@@ -94,7 +94,7 @@
     SWRevealViewController *revealController = self.revealViewController;
     
     // We know the frontViewController is a NavigationController
-    UINavigationController *frontNavigationController = (id)revealController.frontViewController;  // <-- we know it is a NavigationController
+    //UINavigationController *frontNavigationController = (id)revealController.frontViewController;  // <-- we know it is a NavigationController
     NSInteger row = indexPath.row;
 
 	// Here you'd implement some of your own logic... I simply take for granted that the first row (=0) corresponds to the "FrontViewController".

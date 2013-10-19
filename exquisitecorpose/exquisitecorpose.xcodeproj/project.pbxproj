@@ -62,6 +62,8 @@
 		6356FC4B18132232003AFDB3 /* EXQMainCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC4A18132232003AFDB3 /* EXQMainCollectionViewController.m */; };
 		6356FC4E1813285E003AFDB3 /* EXQNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC4D1813285E003AFDB3 /* EXQNewGameViewController.m */; };
 		6356FC5118132971003AFDB3 /* EXQShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC5018132971003AFDB3 /* EXQShareViewController.m */; };
+		6356FC53181339EE003AFDB3 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FC52181339EE003AFDB3 /* GameKit.framework */; };
+		6356FC561813444E003AFDB3 /* EXQTurnBasedMatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC551813444E003AFDB3 /* EXQTurnBasedMatchHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +152,9 @@
 		6356FC4D1813285E003AFDB3 /* EXQNewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQNewGameViewController.m; sourceTree = "<group>"; };
 		6356FC4F18132971003AFDB3 /* EXQShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQShareViewController.h; sourceTree = "<group>"; };
 		6356FC5018132971003AFDB3 /* EXQShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQShareViewController.m; sourceTree = "<group>"; };
+		6356FC52181339EE003AFDB3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		6356FC541813444E003AFDB3 /* EXQTurnBasedMatchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQTurnBasedMatchHelper.h; sourceTree = "<group>"; };
+		6356FC551813444E003AFDB3 /* EXQTurnBasedMatchHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQTurnBasedMatchHelper.m; sourceTree = "<group>"; };
 		A5F1184049DE482EB74C7792 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6356FC53181339EE003AFDB3 /* GameKit.framework in Frameworks */,
 				6356FB981812D7FA003AFDB3 /* CoreGraphics.framework in Frameworks */,
 				6356FB9A1812D7FA003AFDB3 /* UIKit.framework in Frameworks */,
 				6356FB9C1812D7FA003AFDB3 /* SpriteKit.framework in Frameworks */,
@@ -215,6 +221,7 @@
 		6356FB941812D7FA003AFDB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6356FC52181339EE003AFDB3 /* GameKit.framework */,
 				6356FB951812D7FA003AFDB3 /* Foundation.framework */,
 				6356FB971812D7FA003AFDB3 /* CoreGraphics.framework */,
 				6356FB991812D7FA003AFDB3 /* UIKit.framework */,
@@ -353,6 +360,8 @@
 				6356FC18181305B5003AFDB3 /* UIView+Utilities.m */,
 				6356FC19181305B5003AFDB3 /* UIImage+Helpers.h */,
 				6356FC1A181305B5003AFDB3 /* UIImage+Helpers.m */,
+				6356FC541813444E003AFDB3 /* EXQTurnBasedMatchHelper.h */,
+				6356FC551813444E003AFDB3 /* EXQTurnBasedMatchHelper.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -407,6 +416,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Startup Weekend";
 				TargetAttributes = {
+					6356FB911812D7FA003AFDB3 = {
+						DevelopmentTeam = 87ZFCTHS33;
+					};
 					6356FBBC1812D7FA003AFDB3 = {
 						TestTargetID = 6356FB911812D7FA003AFDB3;
 					};
@@ -522,6 +534,7 @@
 				6356FBB41812D7FA003AFDB3 /* EXQMyScene.m in Sources */,
 				6356FC5118132971003AFDB3 /* EXQShareViewController.m in Sources */,
 				6356FC4E1813285E003AFDB3 /* EXQNewGameViewController.m in Sources */,
+				6356FC561813444E003AFDB3 /* EXQTurnBasedMatchHelper.m in Sources */,
 				6356FBE71812F968003AFDB3 /* RearViewController.m in Sources */,
 				6356FBA41812D7FA003AFDB3 /* main.m in Sources */,
 				6356FBF01813005A003AFDB3 /* EXQGameCollectionViewController.m in Sources */,
@@ -669,10 +682,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "exquisitecorpose/exquisitecorpose-Prefix.pch";
 				INFOPLIST_FILE = "exquisitecorpose/exquisitecorpose-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -684,10 +700,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "exquisitecorpose/exquisitecorpose-Prefix.pch";
 				INFOPLIST_FILE = "exquisitecorpose/exquisitecorpose-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
