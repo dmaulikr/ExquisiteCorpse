@@ -33,7 +33,7 @@
 
 - (void)_EXQInitCanvas
 {
-    
+    self.userInteractionEnabled = YES;
 }
 
 #pragma mark - Drawing
@@ -85,6 +85,33 @@
         lastPoint = nextPoint;
     }
     return bezierPath;
+}
+
+#pragma mark - Touches
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesMoved:touches withEvent:event];
+    
+    UITouch *t = [touches anyObject];
+    CGPoint p = [t locationInNode:self];
+    [self addPoint:p];
+    [self redraw]; // Ouch!
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesCancelled:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesEnded:touches withEvent:event];
 }
 
 

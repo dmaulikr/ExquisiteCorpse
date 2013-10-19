@@ -9,10 +9,6 @@
 #import "EXQMainGameViewController.h"
 #import "EXQMyScene.h"
 
-@interface EXQMainGameViewController ()
-
-@end
-
 @implementation EXQMainGameViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,7 +35,7 @@
 - (void)_EXQPresentSpriteKitScene
 {
     // Configure the view.
-    SKView * skView = (SKView *)self.view;
+    SKView *skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     
