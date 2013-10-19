@@ -21,7 +21,8 @@
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [EXQMyScene sceneWithSize:skView.bounds.size];
+    CGSize size = skView.bounds.size;
+    SKScene *scene = [EXQMyScene sceneWithSize:size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
