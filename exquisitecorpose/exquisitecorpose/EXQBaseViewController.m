@@ -7,6 +7,7 @@
 //
 
 #import "EXQBaseViewController.h"
+#import <SWRevealViewController/SWRevealViewController.h>
 
 @interface EXQBaseViewController ()
 
@@ -26,7 +27,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    
+    SWRevealViewController *revealController = [self revealViewController];
+    
+    [self.navigationController.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
+    
+    UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reveal-icon.png"]
+                                                                         style:UIBarButtonItemStyleBordered target:revealController action:@selector(revealToggle:)];
+    
+    self.navigationItem.leftBarButtonItem = revealButtonItem;
+    
+    UIBarButtonItem *rightRevealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reveal-icon.png"]
+                                                                              style:UIBarButtonItemStyleBordered target:revealController action:@selector(rightRevealToggle:)];
+    
+    self.navigationItem.rightBarButtonItem = rightRevealButtonItem;
+
 }
 
 - (void)didReceiveMemoryWarning
