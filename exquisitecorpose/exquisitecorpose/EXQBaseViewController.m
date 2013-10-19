@@ -8,6 +8,7 @@
 
 #import "EXQBaseViewController.h"
 #import <SWRevealViewController/SWRevealViewController.h>
+#import "EXQAppDelegate.h"
 
 @interface EXQBaseViewController ()
 
@@ -15,6 +16,10 @@
 
 @implementation EXQBaseViewController
 
+- (EXQAppDelegate*)appDelegate
+{
+    return (EXQAppDelegate*)[[UIApplication sharedApplication] delegate];
+}
 
 - (UIViewController*)viewControllerFromStoryboard:(NSString *)vcid
 {

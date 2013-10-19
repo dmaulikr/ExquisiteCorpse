@@ -15,4 +15,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) SWRevealViewController *viewController;
 
+@property (nonatomic, retain) NSMutableArray *activeImages;
+
+
 @end
