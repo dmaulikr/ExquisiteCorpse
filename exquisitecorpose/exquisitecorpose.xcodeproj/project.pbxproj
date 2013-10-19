@@ -28,7 +28,6 @@
 		6356FBC91812D7FA003AFDB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6356FBC71812D7FA003AFDB3 /* InfoPlist.strings */; };
 		6356FBCB1812D7FA003AFDB3 /* exquisitecorposeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBCA1812D7FA003AFDB3 /* exquisitecorposeTests.m */; };
 		6356FBD61812E1B5003AFDB3 /* EXQBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBD51812E1B5003AFDB3 /* EXQBaseViewController.m */; };
-		6356FBDA1812E2BE003AFDB3 /* EXQLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBD91812E2BE003AFDB3 /* EXQLaunchViewController.m */; };
 		6356FBDD1812E2DE003AFDB3 /* EXQMainGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBDC1812E2DE003AFDB3 /* EXQMainGameViewController.m */; };
 		6356FBE01812F427003AFDB3 /* EXQSketchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBDF1812F427003AFDB3 /* EXQSketchView.m */; };
 		6356FBE31812F469003AFDB3 /* EXQSketchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBE21812F469003AFDB3 /* EXQSketchViewController.m */; };
@@ -62,6 +61,7 @@
 		6356FC4818130A03003AFDB3 /* images10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6356FC3218130A03003AFDB3 /* images10.jpeg */; };
 		6356FC4B18132232003AFDB3 /* EXQMainCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC4A18132232003AFDB3 /* EXQMainCollectionViewController.m */; };
 		6356FC4E1813285E003AFDB3 /* EXQNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC4D1813285E003AFDB3 /* EXQNewGameViewController.m */; };
+		6356FC5118132971003AFDB3 /* EXQShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC5018132971003AFDB3 /* EXQShareViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,8 +106,6 @@
 		6356FBCA1812D7FA003AFDB3 /* exquisitecorposeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exquisitecorposeTests.m; sourceTree = "<group>"; };
 		6356FBD41812E1B5003AFDB3 /* EXQBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQBaseViewController.h; sourceTree = "<group>"; };
 		6356FBD51812E1B5003AFDB3 /* EXQBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQBaseViewController.m; sourceTree = "<group>"; };
-		6356FBD81812E2BE003AFDB3 /* EXQLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQLaunchViewController.h; sourceTree = "<group>"; };
-		6356FBD91812E2BE003AFDB3 /* EXQLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQLaunchViewController.m; sourceTree = "<group>"; };
 		6356FBDB1812E2DE003AFDB3 /* EXQMainGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQMainGameViewController.h; sourceTree = "<group>"; };
 		6356FBDC1812E2DE003AFDB3 /* EXQMainGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQMainGameViewController.m; sourceTree = "<group>"; };
 		6356FBDE1812F427003AFDB3 /* EXQSketchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQSketchView.h; sourceTree = "<group>"; };
@@ -150,6 +148,8 @@
 		6356FC4A18132232003AFDB3 /* EXQMainCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQMainCollectionViewController.m; sourceTree = "<group>"; };
 		6356FC4C1813285E003AFDB3 /* EXQNewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQNewGameViewController.h; sourceTree = "<group>"; };
 		6356FC4D1813285E003AFDB3 /* EXQNewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQNewGameViewController.m; sourceTree = "<group>"; };
+		6356FC4F18132971003AFDB3 /* EXQShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQShareViewController.h; sourceTree = "<group>"; };
+		6356FC5018132971003AFDB3 /* EXQShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQShareViewController.m; sourceTree = "<group>"; };
 		A5F1184049DE482EB74C7792 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -282,8 +282,6 @@
 				6356FC15181301A8003AFDB3 /* Reference/Dev */,
 				6356FBD41812E1B5003AFDB3 /* EXQBaseViewController.h */,
 				6356FBD51812E1B5003AFDB3 /* EXQBaseViewController.m */,
-				6356FBD81812E2BE003AFDB3 /* EXQLaunchViewController.h */,
-				6356FBD91812E2BE003AFDB3 /* EXQLaunchViewController.m */,
 				6356FBDB1812E2DE003AFDB3 /* EXQMainGameViewController.h */,
 				6356FBDC1812E2DE003AFDB3 /* EXQMainGameViewController.m */,
 				6356FBE11812F469003AFDB3 /* EXQSketchViewController.h */,
@@ -294,6 +292,8 @@
 				6356FC4A18132232003AFDB3 /* EXQMainCollectionViewController.m */,
 				6356FC4C1813285E003AFDB3 /* EXQNewGameViewController.h */,
 				6356FC4D1813285E003AFDB3 /* EXQNewGameViewController.m */,
+				6356FC4F18132971003AFDB3 /* EXQShareViewController.h */,
+				6356FC5018132971003AFDB3 /* EXQShareViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -520,9 +520,9 @@
 				6356FBD61812E1B5003AFDB3 /* EXQBaseViewController.m in Sources */,
 				0353960F1812DC5E00CFCACC /* EXQDrawingState.m in Sources */,
 				6356FBB41812D7FA003AFDB3 /* EXQMyScene.m in Sources */,
+				6356FC5118132971003AFDB3 /* EXQShareViewController.m in Sources */,
 				6356FC4E1813285E003AFDB3 /* EXQNewGameViewController.m in Sources */,
 				6356FBE71812F968003AFDB3 /* RearViewController.m in Sources */,
-				6356FBDA1812E2BE003AFDB3 /* EXQLaunchViewController.m in Sources */,
 				6356FBA41812D7FA003AFDB3 /* main.m in Sources */,
 				6356FBF01813005A003AFDB3 /* EXQGameCollectionViewController.m in Sources */,
 				0353960C1812DBEF00CFCACC /* EXQCanvas.m in Sources */,

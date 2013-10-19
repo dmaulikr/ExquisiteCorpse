@@ -1,5 +1,5 @@
 //
-//  EXQLaunchViewController.h
+//  EXQShareViewController.h
 //  exquisitecorpose
 //
 //  Created by Reid van Melle on 2013-10-19.
@@ -8,6 +8,8 @@
 
 #import "EXQBaseViewController.h"
 
-@interface EXQLaunchViewController : EXQBaseViewController
+@interface EXQShareViewController : EXQBaseViewController
+
+- (void)setImage:(UIImage*)img;
 
 @end

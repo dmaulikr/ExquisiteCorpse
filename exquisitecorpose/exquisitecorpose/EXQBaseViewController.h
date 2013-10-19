@@ -10,4 +10,6 @@
 
 @interface EXQBaseViewController : UIViewController
 
+- (UIViewController*)viewControllerFromStoryboard:(NSString*)vcid;
+
 @end

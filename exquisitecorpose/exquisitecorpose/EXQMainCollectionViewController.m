@@ -7,6 +7,7 @@
 //
 
 #import "EXQMainCollectionViewController.h"
+#import "EXQShareViewController.h"
 
 @interface EXQMainCollectionViewController ()
 
@@ -25,6 +26,13 @@
     return self;
 }
 
+- (UIViewController*)viewControllerFromStoryboard:(NSString *)vcid
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcid];
+    return vc;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
@@ -34,7 +42,9 @@
         [self presentViewController:nav animated:YES completion:^{
         }];
     } else if (indexPath.section == 1) {
-        
+        EXQShareViewController *vc = (EXQShareViewController*)[self viewControllerFromStoryboard:@"EXQShareController"];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc setImage:[UIImage imageNamed:[self.gameImages objectAtIndex:indexPath.row]]];
     }
 }
 
