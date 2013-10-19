@@ -8,7 +8,7 @@
 
 #import "EXQLaunchViewController.h"
 
-@interface EXQLaunchViewController ()
+@interface EXQLaunchViewController () <UITableViewDataSource, UITableViewDelegate>
 
 -(IBAction)startLocalGame:(id)sender;
 
@@ -36,10 +36,27 @@
 	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - TableViewData Source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *kEXQPreviousGameCellIdentifier = @"EXQPreviousGameCellIdentifier";
+    
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:kEXQPreviousGameCellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:kEXQPreviousGameCellIdentifier];
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"previous game %d", indexPath.row];
+    
+    return cell;
+    
 }
 
 @end
