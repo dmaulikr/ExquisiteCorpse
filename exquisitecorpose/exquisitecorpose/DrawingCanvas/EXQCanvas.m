@@ -9,7 +9,14 @@
 #import "EXQCanvas.h"
 #import "EXQDrawingState.h"
 
+@interface EXQCanvas()
+@property (assign) CGRect exqBounds;
+@end
+
 @implementation EXQCanvas
+
+// Configuration flags
+const BOOL kEXQRestrictToBounds = YES;
 
 #pragma mark - Setup
 
@@ -19,6 +26,8 @@
     if (self) {
         [self _EXQInitDrawingState];
         [self _EXQInitCanvas];
+        CGFloat w = self.size.width, h = self.size.height;
+        self.exqBounds = CGRectMake(-w/2.0, -h/2.0, w, h);
     }
     return self;
 }
@@ -40,6 +49,10 @@
 
 - (void)addPoint:(CGPoint)point
 {
+    if (kEXQRestrictToBounds) {
+        if (!CGRectContainsPoint(self.exqBounds, point))
+            return;
+    }
     [self.points addObject:[NSValue valueWithCGPoint:point]];
 }
 
@@ -54,7 +67,6 @@
 
 - (SKShapeNode *)newShapeFromPoints:(NSArray *)points
 {
-    NSParameterAssert([points count] > 0);
     UIBezierPath *path = [self newBezierPathFromPoints:points];
     if (!path)
         return nil;
