@@ -52,6 +52,8 @@
 		6356FC12181300B3003AFDB3 /* green_tea.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6356FC01181300B3003AFDB3 /* green_tea.jpg */; };
 		6356FC13181300B3003AFDB3 /* instant_noodle_with_egg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6356FC02181300B3003AFDB3 /* instant_noodle_with_egg.jpg */; };
 		6356FC14181300B3003AFDB3 /* noodle_with_bbq_pork.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6356FC03181300B3003AFDB3 /* noodle_with_bbq_pork.jpg */; };
+		6356FC1B181305B5003AFDB3 /* UIView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC18181305B5003AFDB3 /* UIView+Utilities.m */; };
+		6356FC1C181305B5003AFDB3 /* UIImage+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC1A181305B5003AFDB3 /* UIImage+Helpers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,10 @@
 		6356FC01181300B3003AFDB3 /* green_tea.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = green_tea.jpg; sourceTree = "<group>"; };
 		6356FC02181300B3003AFDB3 /* instant_noodle_with_egg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = instant_noodle_with_egg.jpg; sourceTree = "<group>"; };
 		6356FC03181300B3003AFDB3 /* noodle_with_bbq_pork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noodle_with_bbq_pork.jpg; sourceTree = "<group>"; };
+		6356FC17181305B5003AFDB3 /* UIView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utilities.h"; sourceTree = "<group>"; };
+		6356FC18181305B5003AFDB3 /* UIView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utilities.m"; sourceTree = "<group>"; };
+		6356FC19181305B5003AFDB3 /* UIImage+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helpers.h"; sourceTree = "<group>"; };
+		6356FC1A181305B5003AFDB3 /* UIImage+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helpers.m"; sourceTree = "<group>"; };
 		A5F1184049DE482EB74C7792 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -204,6 +210,7 @@
 		6356FB9D1812D7FA003AFDB3 /* exquisitecorpose */ = {
 			isa = PBXGroup;
 			children = (
+				6356FC1618130596003AFDB3 /* Utils */,
 				6356FBF11813009F003AFDB3 /* Resources */,
 				6356FBD71812E1BC003AFDB3 /* View Controllers */,
 				035396091812DBD800CFCACC /* DrawingCanvas */,
@@ -309,6 +316,17 @@
 				6356FBE61812F968003AFDB3 /* RearViewController.xib */,
 			);
 			name = Reference/Dev;
+			sourceTree = "<group>";
+		};
+		6356FC1618130596003AFDB3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6356FC17181305B5003AFDB3 /* UIView+Utilities.h */,
+				6356FC18181305B5003AFDB3 /* UIView+Utilities.m */,
+				6356FC19181305B5003AFDB3 /* UIImage+Helpers.h */,
+				6356FC1A181305B5003AFDB3 /* UIImage+Helpers.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6356FC1C181305B5003AFDB3 /* UIImage+Helpers.m in Sources */,
 				6356FBB11812D7FA003AFDB3 /* EXQViewController.m in Sources */,
 				6356FBD61812E1B5003AFDB3 /* EXQBaseViewController.m in Sources */,
 				0353960F1812DC5E00CFCACC /* EXQDrawingState.m in Sources */,
@@ -476,6 +495,7 @@
 				6356FBE01812F427003AFDB3 /* EXQSketchView.m in Sources */,
 				6356FBE31812F469003AFDB3 /* EXQSketchViewController.m in Sources */,
 				6356FBA81812D7FA003AFDB3 /* EXQAppDelegate.m in Sources */,
+				6356FC1B181305B5003AFDB3 /* UIView+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

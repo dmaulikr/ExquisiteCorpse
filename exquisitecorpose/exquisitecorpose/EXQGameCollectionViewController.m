@@ -42,4 +42,9 @@
     return cell;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    self.view.width = 580.;
+    [self.collectionView reloadData];
+}
 @end
