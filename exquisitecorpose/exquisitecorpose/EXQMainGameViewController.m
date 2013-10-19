@@ -7,10 +7,7 @@
 //
 
 #import "EXQMainGameViewController.h"
-
-@interface EXQMainGameViewController ()
-
-@end
+#import "EXQMyScene.h"
 
 @implementation EXQMainGameViewController
 
@@ -26,13 +23,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	[self _EXQPresentSpriteKitScene];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)_EXQPresentSpriteKitScene
+{
+    // Configure the view.
+    SKView *skView = (SKView *)self.view;
+    skView.showsFPS = YES;
+    skView.showsNodeCount = YES;
+    
+    // Create and configure the scene.
+    CGSize size = skView.bounds.size;
+    SKScene *scene = [EXQMyScene sceneWithSize:size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    
+    // Present the scene
+    [skView presentScene:scene];
 }
 
 @end

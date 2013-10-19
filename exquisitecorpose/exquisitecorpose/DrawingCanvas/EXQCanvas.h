@@ -9,9 +9,16 @@
 #import <SpriteKit/SpriteKit.h>
 @class EXQDrawingState;
 
-@interface EXQCanvas : SKNode
+@interface EXQCanvas : SKSpriteNode
+
+// Setup
+- (id)initWithSize:(CGSize)size;
 
 // State
 @property (strong, nonatomic) EXQDrawingState *drawingState;
+@property (strong, nonatomic) NSMutableArray *points;
+
+// Nodes
+@property (strong, nonatomic) SKShapeNode *line;
 
 @end
