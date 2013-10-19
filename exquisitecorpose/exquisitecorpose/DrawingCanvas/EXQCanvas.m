@@ -110,6 +110,12 @@ CGFloat EXQDistance(CGPoint p1, CGPoint p2) {
         self.currentStroke.path = [bezierPath CGPath];
 }
 
+- (void)redrawAllStrokes
+{
+    [self removeAllChildren];
+    for (SKShapeNode *stroke in self.strokes)
+        [self addChild:stroke];
+}
 
 CGPoint exqMidPoint(CGPoint p1, CGPoint p2) {
     return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
@@ -215,6 +221,22 @@ CGPoint exqMidPoint(CGPoint p1, CGPoint p2) {
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+#pragma mark - NSCoding support
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:self.strokes forKey:@"Strokes"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super initWithCoder:decoder];
+    self.strokes = [decoder decodeObjectForKey:@"Strokes"];
+    [self redrawAllStrokes];
+    return self;
 }
 
 
