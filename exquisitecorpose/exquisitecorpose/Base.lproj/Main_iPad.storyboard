@@ -4,6 +4,47 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
+        <!--Share View Controller - Share-->
+        <scene sceneID="al0-Jy-PMs">
+            <objects>
+                <viewController storyboardIdentifier="EXQShareController" id="rem-Hk-5jJ" customClass="EXQShareViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3gR-wh-Dev"/>
+                        <viewControllerLayoutGuide type="bottom" id="sKI-RX-ic9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QQH-tJ-o4w">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hKz-fR-zys">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mPN-h1-ZRH">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Facebook" id="y2z-HI-v9M"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="X3I-z6-PO4"/>
+                                    <barButtonItem title="Twitter" id="nak-9X-odP"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hHl-lC-DqP"/>
+                                    <barButtonItem title="Instagram" id="IHE-FD-btz"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="IrD-qY-uQ5"/>
+                                    <barButtonItem title="Print" id="y4B-Zb-JJm"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Share" id="QjH-Io-pbW"/>
+                    <connections>
+                        <outlet property="imageView" destination="hKz-fR-zys" id="eio-Rj-LsC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9h8-NE-Awq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-68" y="-1202"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -120,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yP1-sm-0K4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1190" y="-1158"/>
+            <point key="canvasLocation" x="-1098" y="-1202"/>
         </scene>
         <!--Main Collection View Controller - FrankenDraw-->
         <scene sceneID="PJq-Aq-lTn">
@@ -250,7 +291,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zg-VY-Xm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-339" y="34"/>
+            <point key="canvasLocation" x="181" y="158"/>
         </scene>
         <!--Launch View Controller - Start-->
         <scene sceneID="dby-Pm-kVt">

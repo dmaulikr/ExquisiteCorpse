@@ -16,6 +16,13 @@
 @implementation EXQBaseViewController
 
 
+- (UIViewController*)viewControllerFromStoryboard:(NSString *)vcid
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcid];
+    return vc;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
