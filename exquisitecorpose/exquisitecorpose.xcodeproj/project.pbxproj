@@ -20,7 +20,6 @@
 		6356FBAE1812D7FA003AFDB3 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6356FBAC1812D7FA003AFDB3 /* Main_iPad.storyboard */; };
 		6356FBB11812D7FA003AFDB3 /* EXQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBB01812D7FA003AFDB3 /* EXQViewController.m */; };
 		6356FBB41812D7FA003AFDB3 /* EXQMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBB31812D7FA003AFDB3 /* EXQMyScene.m */; };
-		6356FBB61812D7FA003AFDB3 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 6356FBB51812D7FA003AFDB3 /* Spaceship.png */; };
 		6356FBB81812D7FA003AFDB3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6356FBB71812D7FA003AFDB3 /* Images.xcassets */; };
 		6356FBBF1812D7FA003AFDB3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FBBE1812D7FA003AFDB3 /* XCTest.framework */; };
 		6356FBC01812D7FA003AFDB3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FB951812D7FA003AFDB3 /* Foundation.framework */; };
@@ -65,7 +64,6 @@
 		6356FBB01812D7FA003AFDB3 /* EXQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EXQViewController.m; sourceTree = "<group>"; };
 		6356FBB21812D7FA003AFDB3 /* EXQMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EXQMyScene.h; sourceTree = "<group>"; };
 		6356FBB31812D7FA003AFDB3 /* EXQMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EXQMyScene.m; sourceTree = "<group>"; };
-		6356FBB51812D7FA003AFDB3 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		6356FBB71812D7FA003AFDB3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6356FBBD1812D7FA003AFDB3 /* exquisitecorposeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = exquisitecorposeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6356FBBE1812D7FA003AFDB3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -160,7 +158,6 @@
 				6356FBB01812D7FA003AFDB3 /* EXQViewController.m */,
 				6356FBB21812D7FA003AFDB3 /* EXQMyScene.h */,
 				6356FBB31812D7FA003AFDB3 /* EXQMyScene.m */,
-				6356FBB51812D7FA003AFDB3 /* Spaceship.png */,
 				6356FBB71812D7FA003AFDB3 /* Images.xcassets */,
 				6356FB9E1812D7FA003AFDB3 /* Supporting Files */,
 			);
@@ -287,7 +284,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6356FBB61812D7FA003AFDB3 /* Spaceship.png in Resources */,
 				6356FBB81812D7FA003AFDB3 /* Images.xcassets in Resources */,
 				6356FBAE1812D7FA003AFDB3 /* Main_iPad.storyboard in Resources */,
 				6356FBAB1812D7FA003AFDB3 /* Main_iPhone.storyboard in Resources */,
