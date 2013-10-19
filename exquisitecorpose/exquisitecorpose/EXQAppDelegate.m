@@ -7,14 +7,53 @@
 //
 
 #import "EXQAppDelegate.h"
+#import <SWRevealViewController/SWRevealViewController.h>
+#import "RearViewController.h"
+
+@interface EXQAppDelegate()<SWRevealViewControllerDelegate>
+@end
 
 @implementation EXQAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+/*- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     return YES;
+}*/
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+	UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	self.window = window;
+	
+	//FrontViewController *frontViewController = [[FrontViewController alloc] init];
+	RearViewController *rearViewController = [[RearViewController alloc] init];
+	
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    UINavigationController *frontNavigationController = [storyboard instantiateInitialViewController];
+	//UINavigationController *frontNavigationController = [[UINavigationController alloc] initWithRootViewController:frontViewController];
+    UINavigationController *rearNavigationController = [[UINavigationController alloc] initWithRootViewController:rearViewController];
+	
+	SWRevealViewController *revealController = [[SWRevealViewController alloc] initWithRearViewController:rearNavigationController frontViewController:frontNavigationController];
+    revealController.rearViewRevealWidth = 600.;
+    revealController.delegate = self;
+    
+    
+    //RightViewController *rightViewController = rightViewController = [[RightViewController alloc] init];
+    //rightViewController.view.backgroundColor = [UIColor greenColor];
+    
+    //revealController.rightViewController = rightViewController;
+    
+    //revealController.bounceBackOnOverdraw=NO;
+    //revealController.stableDragOnOverdraw=YES;
+    
+	self.viewController = revealController;
+	
+	self.window.rootViewController = self.viewController;
+	[self.window makeKeyAndVisible];
+	return YES;
 }
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

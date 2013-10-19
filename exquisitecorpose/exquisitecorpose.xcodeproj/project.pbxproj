@@ -32,6 +32,8 @@
 		6356FBDD1812E2DE003AFDB3 /* EXQMainGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBDC1812E2DE003AFDB3 /* EXQMainGameViewController.m */; };
 		6356FBE01812F427003AFDB3 /* EXQSketchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBDF1812F427003AFDB3 /* EXQSketchView.m */; };
 		6356FBE31812F469003AFDB3 /* EXQSketchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBE21812F469003AFDB3 /* EXQSketchViewController.m */; };
+		6356FBE71812F968003AFDB3 /* RearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FBE51812F968003AFDB3 /* RearViewController.m */; };
+		6356FBE81812F968003AFDB3 /* RearViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6356FBE61812F968003AFDB3 /* RearViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,9 @@
 		6356FBDF1812F427003AFDB3 /* EXQSketchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQSketchView.m; sourceTree = "<group>"; };
 		6356FBE11812F469003AFDB3 /* EXQSketchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQSketchViewController.h; sourceTree = "<group>"; };
 		6356FBE21812F469003AFDB3 /* EXQSketchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQSketchViewController.m; sourceTree = "<group>"; };
+		6356FBE41812F968003AFDB3 /* RearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RearViewController.h; sourceTree = "<group>"; };
+		6356FBE51812F968003AFDB3 /* RearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RearViewController.m; sourceTree = "<group>"; };
+		6356FBE61812F968003AFDB3 /* RearViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RearViewController.xib; sourceTree = "<group>"; };
 		A5F1184049DE482EB74C7792 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -219,6 +224,9 @@
 				6356FBDC1812E2DE003AFDB3 /* EXQMainGameViewController.m */,
 				6356FBE11812F469003AFDB3 /* EXQSketchViewController.h */,
 				6356FBE21812F469003AFDB3 /* EXQSketchViewController.m */,
+				6356FBE41812F968003AFDB3 /* RearViewController.h */,
+				6356FBE51812F968003AFDB3 /* RearViewController.m */,
+				6356FBE61812F968003AFDB3 /* RearViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -304,6 +312,7 @@
 			files = (
 				6356FBB81812D7FA003AFDB3 /* Images.xcassets in Resources */,
 				6356FBAE1812D7FA003AFDB3 /* Main_iPad.storyboard in Resources */,
+				6356FBE81812F968003AFDB3 /* RearViewController.xib in Resources */,
 				6356FBAB1812D7FA003AFDB3 /* Main_iPhone.storyboard in Resources */,
 				6356FBA21812D7FA003AFDB3 /* InfoPlist.strings in Resources */,
 			);
@@ -361,6 +370,7 @@
 				6356FBD61812E1B5003AFDB3 /* EXQBaseViewController.m in Sources */,
 				0353960F1812DC5E00CFCACC /* EXQDrawingState.m in Sources */,
 				6356FBB41812D7FA003AFDB3 /* EXQMyScene.m in Sources */,
+				6356FBE71812F968003AFDB3 /* RearViewController.m in Sources */,
 				6356FBDA1812E2BE003AFDB3 /* EXQLaunchViewController.m in Sources */,
 				6356FBA41812D7FA003AFDB3 /* main.m in Sources */,
 				0353960C1812DBEF00CFCACC /* EXQCanvas.m in Sources */,
