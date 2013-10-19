@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0353960C1812DBEF00CFCACC /* EXQCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 0353960B1812DBEF00CFCACC /* EXQCanvas.m */; };
+		0353960F1812DC5E00CFCACC /* EXQDrawingState.m in Sources */ = {isa = PBXBuildFile; fileRef = 0353960E1812DC5E00CFCACC /* EXQDrawingState.m */; };
 		6356FB961812D7FA003AFDB3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FB951812D7FA003AFDB3 /* Foundation.framework */; };
 		6356FB981812D7FA003AFDB3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FB971812D7FA003AFDB3 /* CoreGraphics.framework */; };
 		6356FB9A1812D7FA003AFDB3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FB991812D7FA003AFDB3 /* UIKit.framework */; };
@@ -38,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0353960A1812DBEF00CFCACC /* EXQCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQCanvas.h; sourceTree = "<group>"; };
+		0353960B1812DBEF00CFCACC /* EXQCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQCanvas.m; sourceTree = "<group>"; };
+		0353960D1812DC5E00CFCACC /* EXQDrawingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQDrawingState.h; sourceTree = "<group>"; };
+		0353960E1812DC5E00CFCACC /* EXQDrawingState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQDrawingState.m; sourceTree = "<group>"; };
+		035396101812DCB400CFCACC /* CommonHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonHeaders.h; sourceTree = "<group>"; };
 		6356FB921812D7FA003AFDB3 /* exquisitecorpose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exquisitecorpose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6356FB951812D7FA003AFDB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6356FB971812D7FA003AFDB3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,6 +96,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		035396091812DBD800CFCACC /* DrawingCanvas */ = {
+			isa = PBXGroup;
+			children = (
+				0353960A1812DBEF00CFCACC /* EXQCanvas.h */,
+				0353960B1812DBEF00CFCACC /* EXQCanvas.m */,
+				0353960D1812DC5E00CFCACC /* EXQDrawingState.h */,
+				0353960E1812DC5E00CFCACC /* EXQDrawingState.m */,
+			);
+			path = DrawingCanvas;
+			sourceTree = "<group>";
+		};
 		6356FB891812D7FA003AFDB3 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +141,7 @@
 		6356FB9D1812D7FA003AFDB3 /* exquisitecorpose */ = {
 			isa = PBXGroup;
 			children = (
+				035396091812DBD800CFCACC /* DrawingCanvas */,
 				6356FBA61812D7FA003AFDB3 /* EXQAppDelegate.h */,
 				6356FBA71812D7FA003AFDB3 /* EXQAppDelegate.m */,
 				6356FBA91812D7FA003AFDB3 /* Main_iPhone.storyboard */,
@@ -145,6 +164,7 @@
 				6356FBA01812D7FA003AFDB3 /* InfoPlist.strings */,
 				6356FBA31812D7FA003AFDB3 /* main.m */,
 				6356FBA51812D7FA003AFDB3 /* exquisitecorpose-Prefix.pch */,
+				035396101812DCB400CFCACC /* CommonHeaders.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -268,8 +288,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6356FBB11812D7FA003AFDB3 /* EXQViewController.m in Sources */,
+				0353960F1812DC5E00CFCACC /* EXQDrawingState.m in Sources */,
 				6356FBB41812D7FA003AFDB3 /* EXQMyScene.m in Sources */,
 				6356FBA41812D7FA003AFDB3 /* main.m in Sources */,
+				0353960C1812DBEF00CFCACC /* EXQCanvas.m in Sources */,
 				6356FBA81812D7FA003AFDB3 /* EXQAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +513,7 @@
 				6356FBD01812D7FA003AFDB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6356FBD11812D7FA003AFDB3 /* Build configuration list for PBXNativeTarget "exquisitecorposeTests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +522,7 @@
 				6356FBD31812D7FA003AFDB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
