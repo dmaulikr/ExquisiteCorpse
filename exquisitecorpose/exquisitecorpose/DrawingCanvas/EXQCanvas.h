@@ -16,9 +16,10 @@
 
 // State
 @property (strong, nonatomic) EXQDrawingState *drawingState;
-@property (strong, nonatomic) NSMutableArray *points;
+@property (strong, nonatomic) NSMutableArray *strokes;
 
-// Nodes
-@property (strong, nonatomic) SKShapeNode *line;
+// Current stroke
+@property (strong, nonatomic) NSMutableArray *points;
+@property (strong, nonatomic) SKShapeNode *currentStroke;
 
 @end

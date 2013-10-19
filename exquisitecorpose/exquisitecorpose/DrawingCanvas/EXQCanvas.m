@@ -34,6 +34,10 @@ const BOOL kEXQRestrictToBounds = YES;
 
 #pragma mark - Setup (Private)
 
+//CGPoint midPoint(CGPoint p1, CGPoint p2) {
+//    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
+//}
+
 - (void)_EXQInitDrawingState
 {
     self.drawingState = [[EXQDrawingState alloc] init];
@@ -45,7 +49,21 @@ const BOOL kEXQRestrictToBounds = YES;
     self.userInteractionEnabled = YES;
 }
 
-#pragma mark - Drawing
+#pragma mark - Strokes
+
+- (void)startStroke
+{
+    self.points = [NSMutableArray array];
+    self.currentStroke = [self newStrokeShape];
+    [self addChild:self.currentStroke];
+}
+
+- (void)finishStroke
+{
+    [self.strokes addObject:self.currentStroke];
+    self.currentStroke = nil;
+    self.points = nil;
+}
 
 - (void)addPoint:(CGPoint)point
 {
@@ -56,26 +74,54 @@ const BOOL kEXQRestrictToBounds = YES;
     [self.points addObject:[NSValue valueWithCGPoint:point]];
 }
 
-- (void)redraw
-{
-    [self removeAllChildren];
-    self.line = [self newShapeFromPoints:self.points];
-    if (self.line) {
-        [self addChild:self.line];
-    }
+CGFloat EXQDistance(CGPoint p1, CGPoint p2) {
+    CGFloat dx = p1.x - p2.x, dy = p1.y - p2.y;
+    return sqrt(dx * dx + dy * dy);
 }
 
-- (SKShapeNode *)newShapeFromPoints:(NSArray *)points
+- (void)eraseAtPoint:(CGPoint)p
 {
-    UIBezierPath *path = [self newBezierPathFromPoints:points];
-    if (!path)
+// TODO if doing
+}
+
+- (void)redrawCurrentStroke
+{
+    UIBezierPath *bezierPath = [self newSmoothedBezierPathForPoints:self.points];
+    if (bezierPath)
+        self.currentStroke.path = [bezierPath CGPath];
+}
+
+
+CGPoint exqMidPoint(CGPoint p1, CGPoint p2) {
+    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
+}
+
+- (UIBezierPath *)newSmoothedBezierPathForPoints:(NSArray *)points
+{
+    NSInteger count = [points count];
+    if (count <= 2)
         return nil;
     
+    UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+    [bezierPath moveToPoint:[points[0] CGPointValue]];
+    [bezierPath addLineToPoint:[points[1] CGPointValue]];
+    for (NSInteger i = 0; i < count - 2; i++)
+    {
+        CGPoint currentPoint = [points[i + 2] CGPointValue];
+        CGPoint previousPoint = [points[i + 1] CGPointValue];
+        CGPoint midPoint = exqMidPoint(currentPoint, previousPoint);
+        [bezierPath addQuadCurveToPoint:currentPoint controlPoint:midPoint];
+    }
+    
+    return bezierPath;
+}
+
+- (SKShapeNode *)newStrokeShape
+{
     SKShapeNode *shape = [SKShapeNode node];
     shape.strokeColor = [SKColor blackColor];
     shape.fillColor = nil;
     shape.lineWidth = 2;
-    shape.path = [path CGPath];
     return shape;
 }
 
@@ -104,6 +150,7 @@ const BOOL kEXQRestrictToBounds = YES;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
+    [self startStroke];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -112,18 +159,33 @@ const BOOL kEXQRestrictToBounds = YES;
     
     UITouch *t = [touches anyObject];
     CGPoint p = [t locationInNode:self];
-    [self addPoint:p];
-    [self redraw]; // Ouch!
+    switch (self.drawingState.canvasState) {
+        case EXQCanvasStateDrawing:
+        {
+            [self addPoint:p];
+            break;
+        }
+        case EXQCanvasStateErasing:
+        {
+            [self eraseAtPoint:p];
+            break;
+        }
+        default:
+            break;
+    }
+    [self redrawCurrentStroke];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesCancelled:touches withEvent:event];
+    [self finishStroke];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
+    [self finishStroke];
 }
 
 
