@@ -194,5 +194,29 @@ CGPoint exqMidPoint(CGPoint p1, CGPoint p2) {
     [self finishStroke];
 }
 
+#pragma mark - Snapshot
+
+- (UIImage *)snapshot
+{
+    UIGraphicsBeginImageContext(self.size);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(ctx, 0.0, self.size.height);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
+    CGContextTranslateCTM(ctx, self.size.width / 2.0, self.size.height / 2.0);
+    
+    // Draw strokes
+    for (SKShapeNode *shape in self.strokes) {
+        CGContextSetStrokeColorWithColor(ctx, shape.strokeColor.CGColor);
+        CGContextSetLineWidth(ctx, shape.lineWidth * 2);
+        CGContextAddPath(ctx, shape.path);
+        CGContextStrokePath(ctx);
+    }
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+
 
 @end
