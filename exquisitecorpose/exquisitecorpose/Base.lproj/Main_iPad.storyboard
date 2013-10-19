@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="NcB-Xn-dv5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -17,14 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="4mN-G7-kIy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="890" y="-1386"/>
         </scene>
-        <!--View Controller-->
+        <!--Launch View Controller - Start-->
         <scene sceneID="dby-Pm-kVt">
             <objects>
-                <viewController id="NcB-Xn-dv5" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EXQStartVC" title="Start" id="NcB-Xn-dv5" customClass="EXQLaunchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GE3-iG-IG9"/>
                         <viewControllerLayoutGuide type="bottom" id="m4s-1x-fb4"/>
@@ -61,6 +63,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odh-HS-cqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-834" y="53"/>
+        </scene>
+        <!--Main Game View Controller - Main Game-->
+        <scene sceneID="Gho-ge-yCL">
+            <objects>
+                <viewController storyboardIdentifier="EXQGameVC" title="Main Game" id="vN1-sJ-mIL" customClass="EXQMainGameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A3l-4j-a3n"/>
+                        <viewControllerLayoutGuide type="bottom" id="eYt-IM-54c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1f0-cg-6Fd">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Main game screen --- please delete me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATJ-QE-3yu">
+                                <rect key="frame" x="208" y="306" width="308" height="196"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hxD-9C-Nsy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lGb-RF-AdN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="111" y="48"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
