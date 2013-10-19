@@ -10,9 +10,16 @@
 
 @interface EXQLaunchViewController ()
 
+-(IBAction)startLocalGame:(id)sender;
+
 @end
 
 @implementation EXQLaunchViewController
+
+- (IBAction)startLocalGame:(id)sender
+{
+    
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
