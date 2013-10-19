@@ -13,7 +13,7 @@
 @property (nonatomic, strong) CAShapeLayer *activeDrawingLayer;
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 
-CGPoint midPoint(CGPoint p1, CGPoint p2);
+//CGPoint midPoint(CGPoint p1, CGPoint p2);
 
 @end
 
