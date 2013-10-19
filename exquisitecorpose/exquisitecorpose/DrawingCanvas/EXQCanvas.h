@@ -26,4 +26,7 @@
 - (IBAction)undoStroke:(id)sender;
 - (void)undoLastStrokeAnimated:(BOOL)animated;
 
+// UIImage Snapshots
+- (UIImage *)snapshot;
+
 @end
