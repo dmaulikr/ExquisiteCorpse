@@ -38,6 +38,25 @@
             </objects>
             <point key="canvasLocation" x="-2203" y="93"/>
         </scene>
+        <!--Sketch View Controller-->
+        <scene sceneID="XfW-PV-MOr">
+            <objects>
+                <viewController id="CFW-hh-7dS" customClass="EXQSketchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y7e-ns-x53"/>
+                        <viewControllerLayoutGuide type="bottom" id="tfF-3o-lax"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HQs-sY-LQT">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LSa-ZR-YIR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4zg-VY-Xm7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-503" y="-1134"/>
+        </scene>
         <!--Launch View Controller - Start-->
         <scene sceneID="dby-Pm-kVt">
             <objects>
@@ -87,6 +106,16 @@
                                     <outlet property="delegate" destination="NcB-Xn-dv5" id="x7q-YL-Sse"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgg-AK-EBc">
+                                <rect key="frame" x="629" y="98" width="61" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="SKETCH">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="CFW-hh-7dS" kind="push" id="igA-14-6gc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
