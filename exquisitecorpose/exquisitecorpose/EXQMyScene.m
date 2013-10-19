@@ -20,6 +20,7 @@
         EXQCanvas *canvas = [[EXQCanvas alloc] initWithSize:CGSizeMake(600, 600)];
         canvas.position = CGPointMake(round(size.width / 2.0), round(size.height / 2.0));
         [self addChild:canvas];
+        self.canvas = canvas;
         
     }
     return self;

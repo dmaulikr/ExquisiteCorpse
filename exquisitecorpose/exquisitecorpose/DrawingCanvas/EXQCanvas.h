@@ -22,4 +22,8 @@
 @property (strong, nonatomic) NSMutableArray *points;
 @property (strong, nonatomic) SKShapeNode *currentStroke;
 
+// Undo
+- (IBAction)undoStroke:(id)sender;
+- (void)undoLastStrokeAnimated:(BOOL)animated;
+
 @end

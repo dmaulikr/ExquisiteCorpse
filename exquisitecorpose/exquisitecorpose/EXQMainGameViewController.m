@@ -8,6 +8,7 @@
 
 #import "EXQMainGameViewController.h"
 #import "EXQMyScene.h"
+#import "EXQCanvas.h"
 
 @implementation EXQMainGameViewController
 
@@ -41,11 +42,20 @@
     
     // Create and configure the scene.
     CGSize size = skView.bounds.size;
-    SKScene *scene = [EXQMyScene sceneWithSize:size];
+    EXQMyScene *scene = [EXQMyScene sceneWithSize:size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
+    self.scene = scene;
     
     // Present the scene
     [skView presentScene:scene];
 }
+
+#pragma mark - Drawing actions
+
+- (void)undoStroke:(id)sender
+{
+    [self.scene.canvas undoStroke:sender];
+}
+
 
 @end

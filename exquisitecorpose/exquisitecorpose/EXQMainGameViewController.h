@@ -7,7 +7,16 @@
 //
 
 #import "EXQBaseViewController.h"
+@class EXQCanvas, EXQMyScene;
 
 @interface EXQMainGameViewController : EXQBaseViewController
+
+// SpriteKit nodes
+@property (strong, nonatomic) EXQCanvas *canvas;
+@property (strong, nonatomic) EXQMyScene *scene;
+
+// Controls
+@property (strong, nonatomic) IBOutlet UIButton *undoButton;
+- (IBAction)undoStroke:(id)sender;
 
 @end

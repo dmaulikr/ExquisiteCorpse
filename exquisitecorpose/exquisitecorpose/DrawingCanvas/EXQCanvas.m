@@ -42,6 +42,7 @@ const BOOL kEXQRestrictToBounds = YES;
 {
     self.drawingState = [[EXQDrawingState alloc] init];
     self.points = [NSMutableArray array];
+    self.strokes = [NSMutableArray array];
 }
 
 - (void)_EXQInitCanvas
@@ -79,9 +80,27 @@ CGFloat EXQDistance(CGPoint p1, CGPoint p2) {
     return sqrt(dx * dx + dy * dy);
 }
 
-- (void)eraseAtPoint:(CGPoint)p
+- (IBAction)undoStroke:(id)sender
 {
-// TODO if doing
+    [self undoLastStrokeAnimated:YES];
+}
+
+- (void)undoLastStrokeAnimated:(BOOL)animated
+{
+    if (self.currentStroke)
+        [self finishStroke];
+    
+    if ([self.strokes count] < 1)
+        return;
+    
+    SKShapeNode *lastStroke = [self.strokes lastObject];
+    NSTimeInterval duration = animated ? 0.1 : 0;
+    __weak id weakSelf = self;
+    [lastStroke runAction:[SKAction fadeOutWithDuration:duration]
+               completion:^{
+                   [lastStroke removeFromParent];
+                   [[weakSelf strokes] removeLastObject];
+               }];
 }
 
 - (void)redrawCurrentStroke
@@ -159,20 +178,7 @@ CGPoint exqMidPoint(CGPoint p1, CGPoint p2) {
     
     UITouch *t = [touches anyObject];
     CGPoint p = [t locationInNode:self];
-    switch (self.drawingState.canvasState) {
-        case EXQCanvasStateDrawing:
-        {
-            [self addPoint:p];
-            break;
-        }
-        case EXQCanvasStateErasing:
-        {
-            [self eraseAtPoint:p];
-            break;
-        }
-        default:
-            break;
-    }
+    [self addPoint:p];
     [self redrawCurrentStroke];
 }
 

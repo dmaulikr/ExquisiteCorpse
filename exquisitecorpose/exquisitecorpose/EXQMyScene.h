@@ -7,7 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+@class EXQCanvas;
 
 @interface EXQMyScene : SKScene
+
+@property (strong, nonatomic) EXQCanvas *canvas;
 
 @end
