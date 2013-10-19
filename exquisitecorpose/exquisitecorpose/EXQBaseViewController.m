@@ -15,14 +15,6 @@
 
 @implementation EXQBaseViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -30,18 +22,20 @@
     
     
     SWRevealViewController *revealController = [self revealViewController];
+    if (revealController) {
     
-    [self.navigationController.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
-    
-    UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reveal-icon.png"]
-                                                                         style:UIBarButtonItemStyleBordered target:revealController action:@selector(revealToggle:)];
-    
-    self.navigationItem.leftBarButtonItem = revealButtonItem;
-    
-    UIBarButtonItem *rightRevealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reveal-icon.png"]
-                                                                              style:UIBarButtonItemStyleBordered target:revealController action:@selector(rightRevealToggle:)];
-    
-    self.navigationItem.rightBarButtonItem = rightRevealButtonItem;
+        [self.navigationController.navigationBar addGestureRecognizer:revealController.panGestureRecognizer];
+        
+        UIBarButtonItem *revealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reveal-icon.png"]
+                                                                             style:UIBarButtonItemStyleBordered target:revealController action:@selector(revealToggle:)];
+        
+        self.navigationItem.leftBarButtonItem = revealButtonItem;
+        
+        UIBarButtonItem *rightRevealButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"reveal-icon.png"]
+                                                                                  style:UIBarButtonItemStyleBordered target:revealController action:@selector(rightRevealToggle:)];
+        
+        self.navigationItem.rightBarButtonItem = rightRevealButtonItem;
+    }
 
 }
 

@@ -25,6 +25,19 @@
     return self;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"EXQNewGameController"];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nav animated:YES completion:^{
+        }];
+    } else if (indexPath.section == 1) {
+        
+    }
+}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 2;
@@ -60,8 +73,8 @@
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:100];
-    recipeImageView.image = [UIImage imageNamed:[self.gameImages objectAtIndex:indexPath.row]];
+    UIImageView *iv = (UIImageView *)[cell viewWithTag:100];
+    iv.image = [UIImage imageNamed:[self.gameImages objectAtIndex:indexPath.row]];
     cell.backgroundView = nil; //[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo-frame.png"]];
     
     return cell;
