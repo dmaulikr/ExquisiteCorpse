@@ -321,6 +321,10 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self showPassAndPlayCoverWithText:@"Sweet! Tap to reveal the drawing"];
             break;
         }
+        case EXQGamePhaseFinished:
+        {
+            NSLog(@"HEY");
+        }
         default:
             break;
     }
