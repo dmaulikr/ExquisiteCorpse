@@ -171,6 +171,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:1 visible:NO animated:YES];
             [self setMaskIndex:2 visible:NO animated:YES];
             [self setCanvasActiveAtIndex:NSNotFound];
+            newPositionForWorld = CGPointMake(0, 0);
             break;
         }
     }
@@ -318,6 +319,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
         }
         case EXQGamePhasePlayer3Turn:
         {
+            [self updateGamePhase:EXQGamePhaseFinished animated:YES];
             [self showPassAndPlayCoverWithText:@"Sweet! Tap to reveal the drawing"];
             break;
         }
