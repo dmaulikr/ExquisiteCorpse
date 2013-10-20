@@ -262,18 +262,18 @@ const CGFloat kEXQCanvas1YOffset = 100;
                                 keysAndValues:@"inputRadius", @40, nil];
     SKTexture *blurredTex = [tex textureByApplyingCIFilter:blur];
 
-    SKSpriteNode *cover = [SKSpriteNode spriteNodeWithColor:[UIColor yellowColor] size:self.size];
+    SKSpriteNode *cover = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:self.size];
 //    SKSpriteNode *cover = [SKSpriteNode spriteNodeWithTexture:blurredTex];
-    cover.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0 - 30);
+    cover.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
     cover.name = @"BackgroundCoverNode";
     cover.alpha = 0;
     [self addChild:cover];
     
     SKLabelNode *textNode = [SKLabelNode labelNodeWithFontNamed:@"HelveticaNeue"];
     textNode.text = text;
-    textNode.fontSize = 26;
-    textNode.fontColor = [EXQConf colorTextWhite];
-    textNode.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
+    textNode.fontSize = 38;
+    textNode.fontColor = [SKColor whiteColor];
+    textNode.position = CGPointZero; //CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
     [cover addChild:textNode];
 
     [cover runAction:[SKAction fadeInWithDuration:0.2]
@@ -297,7 +297,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
     switch (self.gameState.gamePhase) {
         case EXQGamePhasePlayer1Turn:
         {
-            [self showPassAndPlayCoverWithText:@"Best. Doodle. Ever! Ok, next player's turn!"];
+            [self showPassAndPlayCoverWithText:@"Best. Doodle. Ever! Next player!"];
             break;
         }
         case EXQGamePhasePlayer2Turn:
