@@ -16,6 +16,10 @@
 const CGFloat kEXQCanvasHeight = 328;
 const CGFloat kEXQCanvas1YOffset = 100;
 
+@interface EXQScene () <EXQCanvasDelegate>
+
+@end
+
 @implementation EXQScene
 
 #pragma mark - Setup
@@ -26,6 +30,11 @@ const CGFloat kEXQCanvas1YOffset = 100;
     if (self)
     {
         self.backgroundColor = [SKColor whiteColor];
+        self.drawingState = [EXQDrawingState new];
+        self.drawingState.color = [SKColor blackColor];
+        self.drawingState.radius = 2.0;
+        self.drawingState.opacity = 1.0;
+        
         [self _EXQSetupCanvases];
 //        CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"
 //                                    keysAndValues:@"inputRadius", @80, nil];
@@ -51,6 +60,9 @@ const CGFloat kEXQCanvas1YOffset = 100;
     EXQCanvas *canvas1 = [[EXQCanvas alloc] initWithSize:size];
     EXQCanvas *canvas2 = [[EXQCanvas alloc] initWithSize:size];
     EXQCanvas *canvas3 = [[EXQCanvas alloc] initWithSize:size];
+    canvas1.delegate = self;
+    canvas2.delegate = self;
+    canvas3.delegate = self;
     
     canvas3.position = CGPointMake(round(size.width / 2.0), round(size.height / 2.0));
     canvas2.position = CGPointMake(canvas3.position.x, canvas3.position.y + size.height);
@@ -386,6 +398,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 - (SKColor *)drawingColorForCanvas:(EXQCanvas *)canvas
 {
+    //return [SKColor redColor];
     return self.drawingState.color;
 }
 

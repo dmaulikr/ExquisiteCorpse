@@ -151,9 +151,9 @@ CGPoint exqMidPoint(CGPoint p1, CGPoint p2) {
 - (SKShapeNode *)newStrokeShape
 {
     SKShapeNode *shape = [SKShapeNode node];
-    shape.strokeColor = [SKColor blackColor];
+    shape.strokeColor = [self.delegate drawingColorForCanvas:self];
     shape.fillColor = nil;
-    shape.lineWidth = 2;
+    shape.lineWidth = [self.delegate drawingRadiusForCanvas:self];
     return shape;
 }
 

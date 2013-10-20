@@ -76,7 +76,7 @@
 
 - (IBAction)redAction:(id)sender
 {
-    self.scene.drawingState.color = [UIColor redColor];
+    self.scene.drawingState.color = [SKColor redColor];
     
 }
 - (IBAction)blackAction:(id)sender
