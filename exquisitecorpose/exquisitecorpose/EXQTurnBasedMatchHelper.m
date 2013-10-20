@@ -36,11 +36,41 @@ static EXQTurnBasedMatchHelper *sharedHelper = nil;
     return self;
 }
 
+- (void) loadPlayerData: (NSArray *) identifiers
+{
+    [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *players, NSError *error) {
+        if (error != nil)
+        {
+            // Handle the error.
+        }
+        if (players != nil)
+        {
+            self.gameCenterFriends = players;
+        }
+    }];
+}
+
+- (void)retrieveFriends
+{
+    GKLocalPlayer *lp = [GKLocalPlayer localPlayer];
+    if (lp.authenticated)
+    {
+        [lp loadFriendsWithCompletionHandler:^(NSArray *friendIDs, NSError *error) {
+            if (friendIDs != nil)
+            {
+                [self loadPlayerData: friendIDs];
+            }
+        }];
+    }
+}
+
+
 - (void)authenticationChanged {
     
     if ([GKLocalPlayer localPlayer].isAuthenticated && !self.userAuthenticated) {
         NSLog(@"Authentication changed: player authenticated.");
         self.userAuthenticated = YES;
+        [self retrieveFriends];
     } else if (![GKLocalPlayer localPlayer].isAuthenticated && self.userAuthenticated) {
         NSLog(@"Authentication changed: player not authenticated");
         self.userAuthenticated = NO;
@@ -48,13 +78,14 @@ static EXQTurnBasedMatchHelper *sharedHelper = nil;
     
 }
 
-- (BOOL)isGameCenterAvailable { return YES; }
+- (BOOL)isGameCenterAvailable { return self.userAuthenticated; }
 
 - (void)authenticateLocalUser
 {
     NSLog(@"Authenticating local user...");
     if ([GKLocalPlayer localPlayer].authenticated == NO) {
         [[GKLocalPlayer localPlayer] setAuthenticateHandler:^(UIViewController *vc, NSError *err) {
+            [self retrieveFriends];
             NSLog(@"AUTHENTICATED");
         }];
     } else {
@@ -72,8 +103,7 @@ static EXQTurnBasedMatchHelper *sharedHelper = nil;
     request.minPlayers = minPlayers;
     request.maxPlayers = maxPlayers;
     
-    GKTurnBasedMatchmakerViewController *mmvc =
-    [[GKTurnBasedMatchmakerViewController alloc] initWithMatchRequest:request];
+    GKTurnBasedMatchmakerViewController *mmvc = [[GKTurnBasedMatchmakerViewController alloc] initWithMatchRequest:request];
     mmvc.turnBasedMatchmakerDelegate = self;
     mmvc.showExistingMatches = YES;
     
@@ -84,8 +114,7 @@ static EXQTurnBasedMatchHelper *sharedHelper = nil;
 
 #pragma mark GKTurnBasedMatchmakerViewControllerDelegate
 
--(void)turnBasedMatchmakerViewController:
-(GKTurnBasedMatchmakerViewController *)viewController
+-(void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController
                             didFindMatch:(GKTurnBasedMatch *)match {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
 
@@ -93,8 +122,7 @@ static EXQTurnBasedMatchHelper *sharedHelper = nil;
     NSLog(@"did find match, %@", match);
 }
 
--(void)turnBasedMatchmakerViewControllerWasCancelled:
-(GKTurnBasedMatchmakerViewController *)viewController {
+-(void)turnBasedMatchmakerViewControllerWasCancelled:(GKTurnBasedMatchmakerViewController *)viewController {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
         
     }];
@@ -102,8 +130,7 @@ static EXQTurnBasedMatchHelper *sharedHelper = nil;
     NSLog(@"has cancelled");
 }
 
--(void)turnBasedMatchmakerViewController:
-(GKTurnBasedMatchmakerViewController *)viewController
+-(void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController
                         didFailWithError:(NSError *)error {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
         
@@ -112,8 +139,7 @@ static EXQTurnBasedMatchHelper *sharedHelper = nil;
     NSLog(@"Error finding match: %@", error.localizedDescription);
 }
 
--(void)turnBasedMatchmakerViewController:
-(GKTurnBasedMatchmakerViewController *)viewController
+-(void)turnBasedMatchmakerViewController:(GKTurnBasedMatchmakerViewController *)viewController
                       playerQuitForMatch:(GKTurnBasedMatch *)match {
     NSLog(@"playerquitforMatch, %@, %@", match, match.currentParticipant);
 }

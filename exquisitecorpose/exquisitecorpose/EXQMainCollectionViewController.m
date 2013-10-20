@@ -9,11 +9,14 @@
 #import "EXQMainCollectionViewController.h"
 #import "EXQShareViewController.h"
 #import "EXQAppDelegate.h"
+#import "EXQCollectionHeaderView.h"
+#import <GameKit/GameKit.h>
 
-@interface EXQMainCollectionViewController ()
+@interface EXQMainCollectionViewController () <GKTurnBasedEventHandlerDelegate>
 
 @property (nonatomic, retain) NSArray *gameImages;
 @property (readonly) EXQAppDelegate *appDelegate;
+@property (nonatomic, retain) NSArray *activeMatches;
 
 @end
 
@@ -86,6 +89,7 @@
     return cell;
 }
 
+
 - (UICollectionViewCell*)activeCell:(UICollectionView*)collectionView forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"ActiveCell";
@@ -98,6 +102,22 @@
     cell.backgroundView = nil; //[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo-frame.png"]];
     
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        EXQCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"EXQHeaderView" forIndexPath:indexPath];
+        NSString *title = indexPath.section == 0 ? @"Active Plays" : @"Gallery";
+        headerView.titleLabel.text = title;
+        //UIImage *headerImage = [UIImage imageNamed:@"header_banner.png"];
+        //headerView.backgroundImage.image = headerImage;
+        
+        reusableview = headerView;
+    }
+    return reusableview;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -114,10 +134,33 @@
 
 }
 
+- (void) installTurnBasedEventHandler
+{
+    [GKTurnBasedEventHandler sharedTurnBasedEventHandler].delegate = self;
+}
+
+- (void) loadMatches
+{
+    [GKTurnBasedMatch loadMatchesWithCompletionHandler:^(NSArray *matches, NSError *error) {
+        if (matches)
+        {
+            self.activeMatches = matches;
+            [self.collectionView reloadData];
+        }
+    }];
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //[self setNeedsStatusBarAppearanceUpdate];
+    //[[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0]];
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.view.backgroundColor = [UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0];
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:233./255. green:112./255. blue:35./255. alpha:1.0];
+    
     // Initialize recipe image array
     self.gameImages = @[@"download.jpeg",@"download1.jpeg",@"download2.jpeg",@"download3.jpeg",@"download5.jpeg",@"download6.jpeg", @"images.jpeg",@"images1.jpeg",@"images2.jpeg",@"images3.jpeg",@"images4.jpeg",@"images5.jpeg",@"images6.jpeg",@"images7.jpeg",@"images8.jpeg",@"images9.jpeg",@"images10.jpeg",@"images11.jpeg",@"images12.jpeg",@"images13.jpeg",@"images14.jpeg"];
 }
