@@ -159,7 +159,7 @@
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.view.backgroundColor = [UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0];
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0];
-    self.collectionView.backgroundColor = [UIColor colorWithRed:233./255. green:112./255. blue:35./255. alpha:1.0];
+    self.collectionView.backgroundColor = [EXQConf colorViewBackgroundOrange];
     
     // Initialize recipe image array
     self.gameImages = @[@"download.jpeg",@"download1.jpeg",@"download2.jpeg",@"download3.jpeg",@"download5.jpeg",@"download6.jpeg", @"images.jpeg",@"images1.jpeg",@"images2.jpeg",@"images3.jpeg",@"images4.jpeg",@"images5.jpeg",@"images6.jpeg",@"images7.jpeg",@"images8.jpeg",@"images9.jpeg",@"images10.jpeg",@"images11.jpeg",@"images12.jpeg",@"images13.jpeg",@"images14.jpeg"];

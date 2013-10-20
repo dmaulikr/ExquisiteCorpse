@@ -67,6 +67,7 @@
 		6356FC561813444E003AFDB3 /* EXQTurnBasedMatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6356FC551813444E003AFDB3 /* EXQTurnBasedMatchHelper.m */; };
 		63DA228E1813580D00FD6BB0 /* EXQFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DA228D1813580D00FD6BB0 /* EXQFriendsViewController.m */; };
 		63DA22921813736000FD6BB0 /* EXQCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DA22911813736000FD6BB0 /* EXQCollectionHeaderView.m */; };
+		63DA229518137EC300FD6BB0 /* EXQConf.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DA229418137EC300FD6BB0 /* EXQConf.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +165,8 @@
 		63DA228D1813580D00FD6BB0 /* EXQFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQFriendsViewController.m; sourceTree = "<group>"; };
 		63DA22901813736000FD6BB0 /* EXQCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQCollectionHeaderView.h; sourceTree = "<group>"; };
 		63DA22911813736000FD6BB0 /* EXQCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQCollectionHeaderView.m; sourceTree = "<group>"; };
+		63DA229318137EC300FD6BB0 /* EXQConf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQConf.h; sourceTree = "<group>"; };
+		63DA229418137EC300FD6BB0 /* EXQConf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQConf.m; sourceTree = "<group>"; };
 		A5F1184049DE482EB74C7792 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -370,6 +373,8 @@
 		6356FC1618130596003AFDB3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				63DA229318137EC300FD6BB0 /* EXQConf.h */,
+				63DA229418137EC300FD6BB0 /* EXQConf.m */,
 				6356FC17181305B5003AFDB3 /* UIView+Utilities.h */,
 				6356FC18181305B5003AFDB3 /* UIView+Utilities.m */,
 				6356FC19181305B5003AFDB3 /* UIImage+Helpers.h */,
@@ -557,6 +562,7 @@
 				6356FBB41812D7FA003AFDB3 /* EXQMyScene.m in Sources */,
 				6356FC5118132971003AFDB3 /* EXQShareViewController.m in Sources */,
 				63DA22921813736000FD6BB0 /* EXQCollectionHeaderView.m in Sources */,
+				63DA229518137EC300FD6BB0 /* EXQConf.m in Sources */,
 				6356FC4E1813285E003AFDB3 /* EXQNewGameViewController.m in Sources */,
 				6356FC561813444E003AFDB3 /* EXQTurnBasedMatchHelper.m in Sources */,
 				6356FBE71812F968003AFDB3 /* RearViewController.m in Sources */,
