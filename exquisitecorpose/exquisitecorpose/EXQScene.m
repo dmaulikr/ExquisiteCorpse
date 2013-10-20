@@ -366,6 +366,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
     
     if (self.gameState.gamePhase == EXQGamePhaseInitialSetup) {
         [self hidePassAndPlayCover];
+        [self updateGamePhase:EXQGamePhasePlayer1Turn animated:YES];
         return;
     }
 
