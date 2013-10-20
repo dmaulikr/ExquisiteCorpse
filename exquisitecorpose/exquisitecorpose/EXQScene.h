@@ -11,6 +11,7 @@
 
 @protocol EXQSceneDelegate <NSObject>
 - (void)sceneDidFinishDrawing:(EXQScene *)scene;
+- (void)scene:(EXQScene *)scene wantsChromeHidden:(BOOL)hidden;
 @end
 
 
