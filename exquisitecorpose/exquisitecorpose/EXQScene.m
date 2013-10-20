@@ -195,7 +195,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setCanvasActiveAtIndex:NSNotFound];
             newPositionForWorld = CGPointZero;
             
-            SKAction *wait = [SKAction waitForDuration:1.4];
+            SKAction *wait = [SKAction waitForDuration:1.9];
             SKAction *fade = [SKAction fadeAlphaTo:0.15 duration:0.7];
             SKAction *sequence = [SKAction sequence:@[ wait, fade ]];
             
