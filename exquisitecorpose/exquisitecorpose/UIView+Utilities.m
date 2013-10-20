@@ -69,6 +69,11 @@
     return CGRectGetMidX(self.bounds);
 }
 
+- (void)setCenterX:(CGFloat)centerX
+{
+    self.frame = CGRectMake(centerX - self.width/2., self.frame.origin.y, self.frame.size.width, self.frame.size.height);
+}
+
 - (CGFloat)centerY
 {
     return CGRectGetMinY(self.bounds);

@@ -11,10 +11,12 @@
 #import "EXQGameState.h"
 #import "EXQDrawingState.h"
 #import "UIImage+Helpers.h"
+#import "UIView+Utilities.h"
 
 @interface EXQMainGameViewController ()
 
 - (IBAction)done:(id)sender;
+@property (nonatomic, assign) BOOL hiddenChrome;
 
 @end
 
@@ -55,15 +57,63 @@
     [skView presentScene:scene];
 }
 
+- (UIButton*)_buttonWithColor:(UIColor*)color
+{
+    CGFloat d = 40.;
+    CGSize sz = CGSizeMake(d, d);
+    CGRect r = CGRectMake(0, 0, d, d);
+    
+    
+    UIImage *img = [UIImage imageWithColor:color size:sz];
+    UIButton *button = [[UIButton alloc] initWithFrame:r];
+    [button setBackgroundImage:img forState:UIControlStateNormal];
+    button.center = CGPointMake(CGRectGetMaxX(self.view.bounds), CGRectGetMidY(self.view.bounds)-100);
+    button.centerX = self.view.right;
+
+    button.hidden = self.hiddenChrome;
+    [button setcornerRadius:d/2.];
+    [button setborderWidth:2.0];
+    [button setborderColor:[UIColor darkGrayColor]];
+    button.clipsToBounds = YES;
+    return button;
+}
+
 - (void)_EXQSetupColorButtons
 {
-    UIImage *img = [UIImage imageWithColor:[UIColor redColor] size:CGSizeMake(25, 25)];
-    UIButton *redButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    self.blackButton = [self _buttonWithColor:[UIColor blackColor]];
+    [self.view addSubview:_blackButton];
+    [_blackButton addTarget:self action:@selector(blackAction:) forControlEvents:UIControlEventTouchUpInside];
+    _blackButton.top = CGRectGetMidY(self.view.bounds)-100;
+    
+    self.redButton = [self _buttonWithColor:[UIColor redColor]];
+    [self.view addSubview:_redButton];
+    [_redButton addTarget:self action:@selector(redAction:) forControlEvents:UIControlEventTouchUpInside];
+    _redButton.top = CGRectGetMidY(self.view.bounds)-50;
+    
+    self.blueButton = [self _buttonWithColor:[UIColor blueColor]];
+    [self.view addSubview:_blueButton];
+    [_blueButton addTarget:self action:@selector(blueAction:) forControlEvents:UIControlEventTouchUpInside];
+    _blueButton.top = CGRectGetMidY(self.view.bounds);
+    
+    /*CGFloat d = 40.;
+    CGSize sz = CGSizeMake(d, d);
+    CGRect r = CGRectMake(0, 0, d, d);
+    
+    
+    UIImage *img = [UIImage imageWithColor:[UIColor redColor] size:sz];
+    UIButton *redButton = [[UIButton alloc] initWithFrame:r];
     [redButton setBackgroundImage:img forState:UIControlStateNormal];
-    redButton.center = CGPointMake(CGRectGetMaxX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+    redButton.center = CGPointMake(CGRectGetMaxX(self.view.bounds), CGRectGetMidY(self.view.bounds)-100);
+    redButton.centerX = self.view.right;
     [self.view addSubview:redButton];
     [redButton addTarget:self action:@selector(redAction:) forControlEvents:UIControlEventTouchUpInside];
     
+    self.redButton = redButton;
+    self.redButton.hidden = self.hiddenChrome;
+    [self.redButton setcornerRadius:d/2.];
+    [self.redButton setborderWidth:2.0];
+    [self.redButton setborderColor:[UIColor darkGrayColor]];
+    self.redButton.clipsToBounds = YES;*/
     
 }
 - (void)_EXQSetupDoneButton
@@ -129,8 +179,13 @@
 
 - (void)scene:(EXQScene *)scene wantsChromeHidden:(BOOL)hidden
 {
+    self.hiddenChrome = hidden;
+    
     self.undoButton.hidden = hidden;
     self.doneButton.hidden = hidden;
+    self.redButton.hidden = hidden;
+    self.blueButton.hidden = hidden;
+    self.blackButton.hidden = hidden;
 }
 
 

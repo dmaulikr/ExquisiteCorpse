@@ -16,7 +16,7 @@
 @property (assign, readwrite) CGFloat bottom;
 @property (readonly)          CGFloat height;
 @property (assign, readwrite)          CGFloat width;
-@property (readonly)          CGFloat centerX;
+@property (assign, readwrite)          CGFloat centerX;
 @property (readonly)          CGFloat centerY;
 
 @end
