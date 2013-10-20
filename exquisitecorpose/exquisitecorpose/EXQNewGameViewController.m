@@ -7,6 +7,7 @@
 //
 
 #import "EXQNewGameViewController.h"
+#import "EXQTurnBasedMatchHelper.h"
 
 @interface EXQNewGameViewController ()
 
@@ -20,6 +21,10 @@
 {
     [self dismissViewControllerAnimated:YES completion:^{
     }];
+}
+
+- (IBAction)presentGCTurnViewController:(id)sender {
+    [[EXQTurnBasedMatchHelper sharedInstance] findMatchWithMinPlayers:3 maxPlayers:3 viewController:self];
 }
 
 - (void)viewDidLoad

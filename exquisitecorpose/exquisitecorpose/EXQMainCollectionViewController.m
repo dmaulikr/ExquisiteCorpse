@@ -8,22 +8,20 @@
 
 #import "EXQMainCollectionViewController.h"
 #import "EXQShareViewController.h"
+#import "EXQAppDelegate.h"
 
 @interface EXQMainCollectionViewController ()
 
 @property (nonatomic, retain) NSArray *gameImages;
+@property (readonly) EXQAppDelegate *appDelegate;
 
 @end
 
 @implementation EXQMainCollectionViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (EXQAppDelegate*)appDelegate
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    return (EXQAppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
 - (UIViewController*)viewControllerFromStoryboard:(NSString *)vcid
@@ -36,11 +34,14 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
-        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"EXQNewGameController"];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-        [self presentViewController:nav animated:YES completion:^{
-        }];
+        if (indexPath.row >= self.appDelegate.activeImages.count) {
+            UIViewController *vc = [self viewControllerFromStoryboard:@"EXQNewGameController"];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:nav animated:YES completion:^{
+            }];
+        } else {
+            // HERE IS WHERE WE GET THE CORRECT STATE AND PUSH TO IT
+        }
     } else if (indexPath.section == 1) {
         EXQShareViewController *vc = (EXQShareViewController*)[self viewControllerFromStoryboard:@"EXQShareController"];
         [self.navigationController pushViewController:vc animated:YES];
@@ -56,7 +57,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 1;
+        return self.appDelegate.activeImages.count + 1;
     } else if (section == 1) {
         return self.gameImages.count;
     }
@@ -69,16 +70,11 @@
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-
     return cell;
-
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return [self newGameCell:collectionView forItemAtIndexPath:indexPath];
-    }
-    
+- (UICollectionViewCell*)galleryCell:(UICollectionView*)collectionView forItemAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *identifier = @"GalleryCell";
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
@@ -88,6 +84,34 @@
     cell.backgroundView = nil; //[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo-frame.png"]];
     
     return cell;
+}
+
+- (UICollectionViewCell*)activeCell:(UICollectionView*)collectionView forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @"ActiveCell";
+    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor yellowColor];
+    
+    UIImageView *iv = (UIImageView *)[cell viewWithTag:100];
+    iv.image = [UIImage imageNamed:[self.appDelegate.activeImages objectAtIndex:indexPath.row]];
+    cell.backgroundView = nil; //[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo-frame.png"]];
+    
+    return cell;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        if (indexPath.row >= self.appDelegate.activeImages.count) {
+            return [self newGameCell:collectionView forItemAtIndexPath:indexPath];
+        } else {
+            return [self activeCell:collectionView forItemAtIndexPath:indexPath];
+        }
+    } else {
+        return [self galleryCell:collectionView forItemAtIndexPath:indexPath];
+    }
+    
+
 }
 
 

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class EXQAppDelegate;
+
 @interface EXQBaseViewController : UIViewController
 
+- (EXQAppDelegate*)appDelegate;
 - (UIViewController*)viewControllerFromStoryboard:(NSString*)vcid;
 
 @end
