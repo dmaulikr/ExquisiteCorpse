@@ -9,6 +9,8 @@
 #import "EXQMainGameViewController.h"
 #import "EXQCanvas.h"
 #import "EXQGameState.h"
+#import "EXQDrawingState.h"
+#import "UIImage+Helpers.h"
 
 @interface EXQMainGameViewController ()
 
@@ -23,6 +25,7 @@
     [super viewDidLoad];
 	[self _EXQPresentSpriteKitScene];
     [self _EXQSetupDoneButton];
+    [self _EXQSetupColorButtons];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,10 +55,37 @@
     [skView presentScene:scene];
 }
 
+- (void)_EXQSetupColorButtons
+{
+    UIImage *img = [UIImage imageWithColor:[UIColor redColor] size:CGSizeMake(25, 25)];
+    UIButton *redButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [redButton setBackgroundImage:img forState:UIControlStateNormal];
+    redButton.center = CGPointMake(CGRectGetMaxX(self.view.bounds), CGRectGetMidY(self.view.bounds));
+    [self.view addSubview:redButton];
+    [redButton addTarget:self action:@selector(redAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+}
 - (void)_EXQSetupDoneButton
 {
     //UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
     //self.navigationItem.rightBarButtonItem = done;
+}
+
+#pragma mark - Drawing configuration
+
+- (IBAction)redAction:(id)sender
+{
+    self.scene.drawingState.color = [UIColor redColor];
+    
+}
+- (IBAction)blackAction:(id)sender
+{
+    self.scene.drawingState.color = [UIColor blackColor];
+}
+- (IBAction)blueAction:(id)sender
+{
+    self.scene.drawingState.color = [UIColor blueColor];
 }
 
 #pragma mark - Drawing actions

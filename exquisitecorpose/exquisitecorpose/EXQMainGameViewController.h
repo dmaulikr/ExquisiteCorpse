@@ -24,7 +24,14 @@
 // Controls
 @property (strong, nonatomic) IBOutlet UIButton *undoButton;
 @property (strong, nonatomic) IBOutlet UIButton *doneButton;
+@property (strong, nonatomic) IBOutlet UIButton *redButton;
+@property (strong, nonatomic) IBOutlet UIButton *blackButton;
+@property (strong, nonatomic) IBOutlet UIButton *blueButton;
+
 - (IBAction)undoStroke:(id)sender;
 - (IBAction)done:(id)sender;
+- (IBAction)redAction:(id)sender;
+- (IBAction)blackAction:(id)sender;
+- (IBAction)blueAction:(id)sender;
 
 @end
