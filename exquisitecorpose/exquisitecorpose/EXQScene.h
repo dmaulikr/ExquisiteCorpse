@@ -30,6 +30,9 @@
 // Undo
 - (void)undoLastStrokeOnActiveCanvasAnimated:(BOOL)animated;
 
+// Actions
+- (void)nextPassAndPlayTurn;
+
 // Delegate
 @property (weak, nonatomic) id<EXQSceneDelegate> delegate;
 

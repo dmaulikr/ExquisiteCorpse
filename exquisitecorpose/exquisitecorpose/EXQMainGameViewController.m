@@ -61,8 +61,29 @@
 
 - (IBAction)done:(id)sender
 {
-    
+    if (self.passAndPlay) {
+        switch (self.gameState.gamePhase) {
+            case EXQGamePhaseInitialSetup:
+            {
+                break;
+            }
+            case EXQGamePhasePlayer1Turn:
+            case EXQGamePhasePlayer2Turn:
+            case EXQGamePhasePlayer3Turn:
+            {
+                [self.scene nextPassAndPlayTurn];
+                break;
+            }
+            case EXQGamePhaseFinished:
+            {
+                break;
+            }
+            default:
+                break;
+        }
+    }
 }
+
 
 
 @end

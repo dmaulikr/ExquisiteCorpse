@@ -126,6 +126,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
 {
     _gameState.gamePhase = gamePhase;
     [self hideInstructionsForInitialSetup];
+    [self hidePassAndPlayCover];
     CGPoint newPositionForWorld = CGPointZero;
     switch (gamePhase) {
         case EXQGamePhaseInitialSetup:
@@ -242,14 +243,53 @@ const CGFloat kEXQCanvas1YOffset = 100;
          completion:^{ [help removeFromParent]; }];
 }
 
-- (void)showPassAndPlayCover
+- (void)showPassAndPlayCoverWithText:(NSString *)text
 {
     self.shouldEnableEffects = YES;
+
+    SKLabelNode *textNode = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    textNode.text = text;
+    textNode.fontSize = 26;
+    textNode.fontColor = [EXQConf colorTextWhite];
+    textNode.position = CGPointMake(0, -11);
+    
+    SKSpriteNode *background = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:textNode.frame.size];
+    background.name = @"BackgroundCoverNode";
+    background.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
+    [background addChild:textNode];
+    [self.world addChild:background];
 }
 
 - (void)hidePassAndPlayCover
 {
     self.shouldEnableEffects = NO;
+//    [[self.world childNodeWithName:@"BackgroundCoverNode"] removeFromParent];
+}
+
+#pragma mark - Pass and play
+
+- (void)nextPassAndPlayTurn
+{
+    return;
+    switch (self.gameState.gamePhase) {
+        case EXQGamePhasePlayer1Turn:
+        {
+            [self showPassAndPlayCoverWithText:@"Best. Doodle. Ever! Ok, next player's turn!"];
+            break;
+        }
+        case EXQGamePhasePlayer2Turn:
+        {
+            [self showPassAndPlayCoverWithText:@"Rad! Ok, next player's turn!"];
+            break;
+        }
+        case EXQGamePhasePlayer3Turn:
+        {
+            [self showPassAndPlayCoverWithText:@"Sweet! Tap to reveal the drawing"];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 #pragma mark - Canvas delegate
