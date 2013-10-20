@@ -105,7 +105,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
         activeCanvas = [self canvases][0];
     else if (self.gameState.gamePhase == EXQGamePhasePlayer2Turn)
         activeCanvas = [self canvases][1];
-    else if (self.gameState.gamePhase == EXQGamePhasePlayer2Turn)
+    else if (self.gameState.gamePhase == EXQGamePhasePlayer3Turn)
         activeCanvas = [self canvases][2];
     [activeCanvas undoLastStrokeAnimated:YES];
 }
