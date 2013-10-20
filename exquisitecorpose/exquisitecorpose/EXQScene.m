@@ -363,8 +363,18 @@ const CGFloat kEXQCanvas1YOffset = 100;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
-    if (self.gameState.gamePhase == EXQGamePhaseInitialSetup)
+    
+    if (self.gameState.gamePhase == EXQGamePhaseInitialSetup) {
         [self updateGamePhase:EXQGamePhasePlayer1Turn animated:YES];
+        return;
+    }
+
+    // Is there a cover up?
+    SKNode *cover = [self childNodeWithName:@"BackgroundCoverNode"];
+    if (cover) {
+        [self hidePassAndPlayCover];
+    }
+    
 }
 
 
