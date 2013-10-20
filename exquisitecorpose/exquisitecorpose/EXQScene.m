@@ -127,6 +127,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
     _gameState.gamePhase = gamePhase;
     [self hideInstructionsForInitialSetup];
     [self hidePassAndPlayCover];
+    NSTimeInterval duration = animated ? 0.4 : 0;
     CGPoint newPositionForWorld = CGPointZero;
     switch (gamePhase) {
         case EXQGamePhaseInitialSetup:
@@ -171,12 +172,18 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:1 visible:NO animated:YES];
             [self setMaskIndex:2 visible:NO animated:YES];
             [self setCanvasActiveAtIndex:NSNotFound];
-            newPositionForWorld = CGPointMake(0, 0);
+            newPositionForWorld = CGPointZero;
+            [self.dottedLine1 runAction:[SKAction fadeOutWithDuration:duration] completion:^{
+                [self.world removeChildrenInArray:@[self.dottedLine1]];
+            }];
+            [self.dottedLine2 runAction:[SKAction fadeOutWithDuration:duration] completion:^{
+                [self.world removeChildrenInArray:@[self.dottedLine2]];
+            }];
             break;
         }
     }
     
-    NSTimeInterval duration = animated ? 0.4 : 0;
+    
     SKAction *wait = [SKAction waitForDuration:duration];
     SKAction *moveWorld = [SKAction moveTo:newPositionForWorld duration:duration];
     SKAction *sequence = [SKAction sequence:@[ wait, moveWorld ]];
