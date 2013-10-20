@@ -7,7 +7,7 @@
 //
 
 #import "EXQMainGameViewController.h"
-#import "EXQMyScene.h"
+#import "EXQScene.h"
 #import "EXQCanvas.h"
 #import "EXQGameState.h"
 
@@ -17,6 +17,7 @@
 {
     [super viewDidLoad];
 	[self _EXQPresentSpriteKitScene];
+    [self _EXQSetupDoneButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,20 +35,55 @@
     
     // Create and configure the scene.
     CGSize size = skView.bounds.size;
-    EXQMyScene *scene = [EXQMyScene sceneWithSize:size];
+    EXQScene *scene = [EXQScene sceneWithSize:size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     self.scene = scene;
+    
+    // Configure the scene
+    scene.gameState = self.gameState;
     
     // Present the scene
     [skView presentScene:scene];
 }
 
+- (void)_EXQSetupDoneButton
+{
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem = done;
+}
+
 #pragma mark - Drawing actions
 
-- (void)undoStroke:(id)sender
+- (IBAction)undoStroke:(id)sender
 {
-    [self.scene.canvas undoStroke:sender];
+    [self.scene undoLastStrokeOnActiveCanvasAnimated:YES];
 }
+
+- (IBAction)done:(id)sender
+{
+    if (self.passAndPlay) {
+        switch (self.gameState.gamePhase) {
+            case EXQGamePhaseInitialSetup:
+            {
+                break;
+            }
+            case EXQGamePhasePlayer1Turn:
+            case EXQGamePhasePlayer2Turn:
+            case EXQGamePhasePlayer3Turn:
+            {
+                [self.scene nextPassAndPlayTurn];
+                break;
+            }
+            case EXQGamePhaseFinished:
+            {
+                break;
+            }
+            default:
+                break;
+        }
+    }
+}
+
 
 
 @end

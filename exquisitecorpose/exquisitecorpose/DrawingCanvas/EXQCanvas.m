@@ -24,7 +24,6 @@ const BOOL kEXQRestrictToBounds = YES;
 {
     self = [super initWithColor:[SKColor colorWithWhite:0.98 alpha:1] size:size];
     if (self) {
-        [self _EXQInitDrawingState];
         [self _EXQInitCanvas];
         CGFloat w = self.size.width, h = self.size.height;
         self.exqBounds = CGRectMake(-w/2.0, -h/2.0, w, h);
@@ -34,20 +33,27 @@ const BOOL kEXQRestrictToBounds = YES;
 
 #pragma mark - Setup (Private)
 
-//CGPoint midPoint(CGPoint p1, CGPoint p2) {
-//    return CGPointMake((p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5);
-//}
-
-- (void)_EXQInitDrawingState
-{
-    self.drawingState = [[EXQDrawingState alloc] init];
-    self.points = [NSMutableArray array];
-    self.strokes = [NSMutableArray array];
-}
-
 - (void)_EXQInitCanvas
 {
+    self.points = [NSMutableArray array];
+    self.strokes = [NSMutableArray array];
     self.userInteractionEnabled = YES;
+}
+
+#pragma mark - State
+
+- (void)setActive:(BOOL)active animated:(BOOL)animated
+{
+    _active = active;
+    NSTimeInterval duration = animated ? 0.2 : 0;
+    if (active) {
+        [self removeActionForKey:@"Colorize"];
+    } else {
+        SKAction *colorize = [SKAction colorizeWithColor:[SKColor colorWithWhite:0.8 alpha:1]
+                                        colorBlendFactor:0.8
+                                                duration:duration];
+        [self runAction:colorize withKey:@"Colorize"];
+    }
 }
 
 #pragma mark - Strokes

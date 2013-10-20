@@ -7,7 +7,7 @@
 //
 
 #import "EXQViewController.h"
-#import "EXQMyScene.h"
+#import "EXQScene.h"
 
 @implementation EXQViewController
 
@@ -22,7 +22,7 @@
     
     // Create and configure the scene.
     CGSize size = skView.bounds.size;
-    SKScene *scene = [EXQMyScene sceneWithSize:size];
+    SKScene *scene = [EXQScene sceneWithSize:size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.

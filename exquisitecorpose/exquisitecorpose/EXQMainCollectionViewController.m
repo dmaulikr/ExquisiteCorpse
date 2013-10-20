@@ -40,7 +40,8 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row >= self.appDelegate.activeImages.count) {
-            UIViewController *vc = [self viewControllerFromStoryboard:@"EXQNewGameController"];
+            EXQNewGameViewController *vc = (EXQNewGameViewController *)[self viewControllerFromStoryboard:@"EXQNewGameController"];
+            vc.delegate = self;
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:nav animated:YES completion:^{
             }];
@@ -178,6 +179,20 @@
     // Initialize recipe image array
     // Fancy, Reid!
     self.gameImages = @[@"download.jpeg",@"download1.jpeg",@"download2.jpeg",@"download3.jpeg",@"download5.jpeg",@"download6.jpeg", @"images.jpeg",@"images1.jpeg",@"images2.jpeg",@"images3.jpeg",@"images4.jpeg",@"images5.jpeg",@"images6.jpeg",@"images7.jpeg",@"images8.jpeg",@"images9.jpeg",@"images10.jpeg",@"images11.jpeg",@"images12.jpeg",@"images13.jpeg",@"images14.jpeg"];
+}
+
+#pragma mark - New game view controller delegate
+
+- (void)newViewControllerStartedLocalGame:(EXQNewGameViewController *)newViewController
+{
+    EXQMainGameViewController *vc = (EXQMainGameViewController *)[self viewControllerFromStoryboard:@"EXQGameVC"];
+    vc.gameState = [EXQGameState newLocalGameState];
+    vc.passAndPlay = YES;
+    NSAssert(vc, @"wuh woh");
+
+    // Do it all at once
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Transition to game

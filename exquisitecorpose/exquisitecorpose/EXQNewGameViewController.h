@@ -7,7 +7,16 @@
 //
 
 #import "EXQBaseViewController.h"
+@class EXQNewGameViewController;
+
+@protocol EXQNewGameViewControllerDelegate <NSObject>
+- (void)newViewControllerStartedLocalGame:(EXQNewGameViewController *)newViewController;
+@end
 
 @interface EXQNewGameViewController : EXQBaseViewController
+
+- (IBAction)startLocalGame:(id)sender;
+
+@property (weak, nonatomic) id<EXQNewGameViewControllerDelegate> delegate;
 
 @end

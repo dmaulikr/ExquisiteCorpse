@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EXQNewGameViewController.h"
 
 @interface EXQMainCollectionViewController : UICollectionViewController
+<EXQNewGameViewControllerDelegate>
 
 @end

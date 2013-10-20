@@ -7,23 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef enum : NSInteger {
-    EXQStrokeTypeDefault = 0,
-} EXQStrokeType;
-
-typedef enum : NSInteger {
-    EXQCanvasStateDrawing = 0,
-    EXQCanvasStateErasing
-} EXQCanvasState;
+#import <SpriteKit/SpriteKit.h>
 
 @interface EXQDrawingState : NSObject
 
-@property (assign) CGFloat opacity;
-@property (assign) CGFloat radius;
 @property (strong, nonatomic) SKColor *color;
-@property (assign) EXQStrokeType strokeType;
-@property (assign) EXQCanvasState canvasState;
-
+@property (assign) CGFloat radius;
+@property (assign) CGFloat opacity;
 
 @end

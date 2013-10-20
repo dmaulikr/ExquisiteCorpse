@@ -7,7 +7,42 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+@class EXQCanvas, EXQScene, EXQDrawingState, EXQGameState;
+
+@protocol EXQSceneDelegate <NSObject>
+- (void)sceneDidFinishDrawing:(EXQScene *)scene;
+@end
+
 
 @interface EXQScene : SKScene
+
+// Canvases
+@property (strong, nonatomic) SKNode *world;
+@property (strong, nonatomic) EXQCanvas *playerCanvas1;
+@property (strong, nonatomic) EXQCanvas *playerCanvas2;
+@property (strong, nonatomic) EXQCanvas *playerCanvas3;
+@property (strong, nonatomic) SKSpriteNode *mask1;
+@property (strong, nonatomic) SKSpriteNode *mask2;
+@property (strong, nonatomic) SKSpriteNode *mask3;
+@property (strong, nonatomic) SKSpriteNode *dottedLine1;
+@property (strong, nonatomic) SKSpriteNode *dottedLine2;
+
+// Undo
+- (void)undoLastStrokeOnActiveCanvasAnimated:(BOOL)animated;
+
+// Actions
+- (void)nextPassAndPlayTurn;
+
+// Delegate
+@property (weak, nonatomic) id<EXQSceneDelegate> delegate;
+
+// State
+@property (strong, nonatomic) EXQDrawingState *drawingState;
+@property (strong, nonatomic) EXQGameState *gameState;
+
+// Show Cover
+- (void)showCoverNodeWithText:(NSString *)text;
+
+
 
 @end
