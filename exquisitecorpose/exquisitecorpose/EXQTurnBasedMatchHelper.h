@@ -12,6 +12,7 @@
 @interface EXQTurnBasedMatchHelper : NSObject
 
 @property (assign, readonly) BOOL gameCenterAvailable;
+@property (nonatomic, retain) NSArray *gameCenterFriends;
 @property (nonatomic, weak) UIViewController *presentingViewController;
 
 + (EXQTurnBasedMatchHelper *)sharedInstance;

@@ -15,4 +15,5 @@
     #import <Foundation/Foundation.h>
     #import "CommonHeaders.h"
 #import "UIView+Utilities.h"
+#import "EXQConf.h"
 #endif

@@ -23,8 +23,30 @@
     }];
 }
 
+- (void)gameCenterError
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Game Center Error"
+                                                        message:@"You must be authenticated in game center to perform this operation."
+                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (IBAction)startGameWithFriends:(id)sender
+{
+    if ([EXQTurnBasedMatchHelper sharedInstance].gameCenterAvailable) {
+        UIViewController *vc = [self viewControllerFromStoryboard:@"EXQFriendsController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        [self gameCenterError];
+    }
+}
+
 - (IBAction)presentGCTurnViewController:(id)sender {
-    [[EXQTurnBasedMatchHelper sharedInstance] findMatchWithMinPlayers:3 maxPlayers:3 viewController:self];
+    if ([EXQTurnBasedMatchHelper sharedInstance].gameCenterAvailable) {
+        [[EXQTurnBasedMatchHelper sharedInstance] findMatchWithMinPlayers:3 maxPlayers:3 viewController:self];
+    } else {
+        [self gameCenterError];
+    }
 }
 
 - (void)viewDidLoad
