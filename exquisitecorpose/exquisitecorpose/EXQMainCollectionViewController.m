@@ -104,7 +104,12 @@
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     //cell.backgroundColor = [UIColor yellowColor];
-    
+    {
+        UIImageView *iv = (UIImageView*)[cell viewWithTag:200];
+        if (indexPath.row % 2 == 0) {
+            iv.hidden = YES;
+        }
+    }
     UIImageView *iv = (UIImageView *)[cell viewWithTag:100];
     iv.image = [UIImage imageNamed:[self.appDelegate.activeImages objectAtIndex:indexPath.row]];
     UIView *v = [cell viewWithTag:90];
@@ -167,8 +172,8 @@
     //[self setNeedsStatusBarAppearanceUpdate];
     //[[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0]];
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.view.backgroundColor = [UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0];
+    //self.navigationController.view.backgroundColor = [UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0];
+    //self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0];
     self.collectionView.backgroundColor = [EXQConf colorViewBackgroundOrange];
     
     // Initialize recipe image array
