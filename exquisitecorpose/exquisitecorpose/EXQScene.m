@@ -190,6 +190,12 @@ const CGFloat kEXQCanvas1YOffset = 100;
         canvas.active = active;
         canvas.userInteractionEnabled = active;
     }
+    
+    /*for (NSInteger i = 0; i < 3; i++) {
+        EXQCanvas *canvas = [self canvases][i];
+        canvas.active = YES;
+        canvas.userInteractionEnabled = YES;
+    }*/
 }
 
 - (void)setMaskIndex:(NSInteger)index visible:(BOOL)visible animated:(BOOL)animated
@@ -203,7 +209,9 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self.world addChild:mask];
         [mask runAction:[SKAction fadeInWithDuration:duration]];
     } else {
-        [mask runAction:[SKAction fadeOutWithDuration:duration]];
+        [mask runAction:[SKAction fadeOutWithDuration:duration] completion:^{
+            [self.world removeChildrenInArray:@[mask]];
+        }];
     }
 }
 
@@ -270,15 +278,18 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 - (void)nextPassAndPlayTurn
 {
-    return;
+    //return;
     switch (self.gameState.gamePhase) {
         case EXQGamePhasePlayer1Turn:
         {
+            [self updateGamePhase:EXQGamePhasePlayer2Turn animated:YES];
+
             [self showPassAndPlayCoverWithText:@"Best. Doodle. Ever! Ok, next player's turn!"];
             break;
         }
         case EXQGamePhasePlayer2Turn:
         {
+            [self updateGamePhase:EXQGamePhasePlayer3Turn animated:YES];
             [self showPassAndPlayCoverWithText:@"Rad! Ok, next player's turn!"];
             break;
         }

@@ -110,8 +110,8 @@
 		035396101812DCB400CFCACC /* CommonHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonHeaders.h; sourceTree = "<group>"; };
 		035396141813324200CFCACC /* EXQGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQGameState.h; sourceTree = "<group>"; };
 		035396151813324200CFCACC /* EXQGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQGameState.m; sourceTree = "<group>"; };
-		03539617181385CE00CFCACC /* EXQScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQScene.h; sourceTree = "<group>"; };
-		03539618181385CE00CFCACC /* EXQScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQScene.m; sourceTree = "<group>"; };
+		03539617181385CE00CFCACC /* EXQScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EXQScene.h; path = ../EXQScene.h; sourceTree = "<group>"; };
+		03539618181385CE00CFCACC /* EXQScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EXQScene.m; path = ../EXQScene.m; sourceTree = "<group>"; };
 		0353961A1813896900CFCACC /* EXQDrawingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQDrawingState.h; sourceTree = "<group>"; };
 		0353961B1813896900CFCACC /* EXQDrawingState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQDrawingState.m; sourceTree = "<group>"; };
 		0353961D18140AC100CFCACC /* dashed_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashed_line@2x.png"; sourceTree = "<group>"; };
@@ -252,6 +252,8 @@
 				6356FBDF1812F427003AFDB3 /* EXQSketchView.m */,
 				0353960A1812DBEF00CFCACC /* EXQCanvas.h */,
 				0353960B1812DBEF00CFCACC /* EXQCanvas.m */,
+				03539617181385CE00CFCACC /* EXQScene.h */,
+				03539618181385CE00CFCACC /* EXQScene.m */,
 				0353961A1813896900CFCACC /* EXQDrawingState.h */,
 				0353961B1813896900CFCACC /* EXQDrawingState.m */,
 			);
@@ -309,8 +311,6 @@
 				035396151813324200CFCACC /* EXQGameState.m */,
 				6356FBB71812D7FA003AFDB3 /* Images.xcassets */,
 				6356FB9E1812D7FA003AFDB3 /* Supporting Files */,
-				03539617181385CE00CFCACC /* EXQScene.h */,
-				03539618181385CE00CFCACC /* EXQScene.m */,
 			);
 			path = exquisitecorpose;
 			sourceTree = "<group>";
