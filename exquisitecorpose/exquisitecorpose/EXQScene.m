@@ -25,6 +25,11 @@ const CGFloat kEXQCanvas1YOffset = 100;
     {
         self.backgroundColor = [SKColor whiteColor];
         [self _EXQSetupCanvases];
+        CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"
+                                    keysAndValues:@"inputRadius", @80, nil];
+        self.filter = blur;
+        self.shouldRasterize = YES;
+        self.shouldEnableEffects = NO;
     }
     return self;
 }
@@ -235,6 +240,16 @@ const CGFloat kEXQCanvas1YOffset = 100;
     SKLabelNode *help = (SKLabelNode *)[self.world childNodeWithName:@"HelpText"];
     [help runAction:[SKAction fadeOutWithDuration:0.3]
          completion:^{ [help removeFromParent]; }];
+}
+
+- (void)showPassAndPlayCover
+{
+    self.shouldEnableEffects = YES;
+}
+
+- (void)hidePassAndPlayCover
+{
+    self.shouldEnableEffects = NO;
 }
 
 #pragma mark - Canvas delegate

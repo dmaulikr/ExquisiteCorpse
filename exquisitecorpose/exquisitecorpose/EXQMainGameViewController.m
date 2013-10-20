@@ -17,6 +17,7 @@
 {
     [super viewDidLoad];
 	[self _EXQPresentSpriteKitScene];
+    [self _EXQSetupDoneButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,11 +46,22 @@
     [skView presentScene:scene];
 }
 
+- (void)_EXQSetupDoneButton
+{
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    self.navigationItem.rightBarButtonItem = done;
+}
+
 #pragma mark - Drawing actions
 
 - (IBAction)undoStroke:(id)sender
 {
     [self.scene undoLastStrokeOnActiveCanvasAnimated:YES];
+}
+
+- (IBAction)done:(id)sender
+{
+    
 }
 
 

@@ -22,5 +22,6 @@
 // Controls
 @property (strong, nonatomic) IBOutlet UIButton *undoButton;
 - (IBAction)undoStroke:(id)sender;
+- (IBAction)done:(id)sender;
 
 @end

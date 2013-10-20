@@ -37,6 +37,9 @@
 @property (strong, nonatomic) EXQDrawingState *drawingState;
 @property (strong, nonatomic) EXQGameState *gameState;
 
+// Show Cover
+- (void)showCoverNodeWithText:(NSString *)text;
+
 
 
 @end
