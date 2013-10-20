@@ -7,9 +7,12 @@
 //
 
 #import "EXQBaseViewController.h"
-@class EXQCanvas, EXQMyScene;
+@class EXQCanvas, EXQMyScene, EXQGameState;
 
 @interface EXQMainGameViewController : EXQBaseViewController
+
+// Game state
+@property (strong, nonatomic) EXQGameState *gameState;
 
 // SpriteKit nodes
 @property (strong, nonatomic) EXQCanvas *canvas;
