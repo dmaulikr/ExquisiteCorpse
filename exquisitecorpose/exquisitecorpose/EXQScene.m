@@ -27,11 +27,11 @@ const CGFloat kEXQCanvas1YOffset = 100;
     {
         self.backgroundColor = [SKColor whiteColor];
         [self _EXQSetupCanvases];
-        CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"
-                                    keysAndValues:@"inputRadius", @80, nil];
-        self.filter = blur;
-        self.shouldRasterize = YES;
-        self.shouldEnableEffects = NO;
+//        CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"
+//                                    keysAndValues:@"inputRadius", @80, nil];
+//        self.filter = blur;
+//        self.shouldRasterize = YES;
+//        self.shouldEnableEffects = NO;
         [self _createHackyMasks];
     }
     return self;
@@ -63,22 +63,22 @@ const CGFloat kEXQCanvas1YOffset = 100;
     self.playerCanvas3 = canvas3;
     
     // Masks
-    SKSpriteNode *mask1 = [SKSpriteNode spriteNodeWithTexture:nil size:canvas1.size];
-    SKSpriteNode *mask2 = [SKSpriteNode spriteNodeWithTexture:nil size:canvas2.size];
-    SKSpriteNode *mask3 = [SKSpriteNode spriteNodeWithTexture:nil size:canvas3.size];
-    mask1.position = canvas1.position;
-    mask2.position = canvas2.position;
-    mask3.position = canvas3.position;
-    for (SKSpriteNode *mask in @[mask1, mask2, mask3]) {
-        mask.userInteractionEnabled = NO;
-    }
+//    SKSpriteNode *mask1 = [SKSpriteNode spriteNodeWithTexture:nil size:canvas1.size];
+//    SKSpriteNode *mask2 = [SKSpriteNode spriteNodeWithTexture:nil size:canvas2.size];
+//    SKSpriteNode *mask3 = [SKSpriteNode spriteNodeWithTexture:nil size:canvas3.size];
+//    mask1.position = canvas1.position;
+//    mask2.position = canvas2.position;
+//    mask3.position = canvas3.position;
+//    for (SKSpriteNode *mask in @[mask1, mask2, mask3]) {
+//        mask.userInteractionEnabled = NO;
+//    }
     
 //    [self.world addChild:mask1];
 //    [self.world addChild:mask2];
 //    [self.world addChild:mask3];
-    self.mask1 = mask1;
-    self.mask2 = mask2;
-    self.mask3 = mask3;
+//    self.mask1 = mask1;
+//    self.mask2 = mask2;
+//    self.mask3 = mask3;
     
     // Lines
     SKSpriteNode *line1 = [SKSpriteNode spriteNodeWithImageNamed:@"dashed_line.png"];
@@ -117,7 +117,8 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 - (NSArray *)masks
 {
-    return @[self.mask1, self.mask2, self.mask3];
+    return nil;
+//    return @[self.mask1, self.mask2, self.mask3];
 }
 
 - (NSArray *)canvases
@@ -171,16 +172,24 @@ const CGFloat kEXQCanvas1YOffset = 100;
         case EXQGamePhaseFinished:
         default:
         {
+            [self.delegate scene:self wantsChromeHidden:YES];
             [self setMaskIndex:0 visible:NO animated:YES];
             [self setMaskIndex:1 visible:NO animated:YES];
             [self setMaskIndex:2 visible:NO animated:YES];
             [self setCanvasActiveAtIndex:NSNotFound];
             newPositionForWorld = CGPointZero;
-            [self.dottedLine1 runAction:[SKAction fadeOutWithDuration:duration] completion:^{
-                [self.world removeChildrenInArray:@[self.dottedLine1]];
+            
+            SKAction *wait = [SKAction waitForDuration:1.4];
+            SKAction *fade = [SKAction fadeAlphaTo:0.15 duration:0.7];
+            SKAction *sequence = [SKAction sequence:@[ wait, fade ]];
+            
+            [self.dottedLine1 runAction:sequence
+                             completion:^{
+//                [self.world removeChildrenInArray:@[self.dottedLine1]];
             }];
-            [self.dottedLine2 runAction:[SKAction fadeOutWithDuration:duration] completion:^{
-                [self.world removeChildrenInArray:@[self.dottedLine2]];
+            [self.dottedLine2 runAction:sequence
+                             completion:^{
+//                [self.world removeChildrenInArray:@[self.dottedLine2]];
             }];
             
             UIImage *img1 = [self.playerCanvas1 snapshot];
@@ -224,6 +233,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 - (void)setMaskIndex:(NSInteger)index visible:(BOOL)visible animated:(BOOL)animated
 {
+    return;
     NSTimeInterval duration = animated ? 0.2 : 0;
     SKSpriteNode *mask = [self masks][index];
     if (visible) {
@@ -288,12 +298,12 @@ const CGFloat kEXQCanvas1YOffset = 100;
 {
     [self.delegate scene:self wantsChromeHidden:YES];
     
-    UIImage *image = [self newSnapshotImageForRect:self.frame];
-    SKTexture *tex = [SKTexture textureWithImage:image];
-    CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"
-                                keysAndValues:@"inputRadius", @40, nil];
-    SKTexture *blurredTex = [tex textureByApplyingCIFilter:blur];
-
+//    UIImage *image = [self newSnapshotImageForRect:self.frame];
+//    SKTexture *tex = [SKTexture textureWithImage:image];
+//    CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"
+//                                keysAndValues:@"inputRadius", @40, nil];
+//    SKTexture *blurredTex = [tex textureByApplyingCIFilter:blur];
+//
     SKSpriteNode *cover = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:self.size];
 //    SKSpriteNode *cover = [SKSpriteNode spriteNodeWithTexture:blurredTex];
     cover.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
@@ -316,7 +326,8 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 - (void)hidePassAndPlayCover
 {
-    [self.delegate scene:self wantsChromeHidden:NO];
+    BOOL hideChrome = self.gameState.gamePhase == EXQGamePhaseFinished;
+    [self.delegate scene:self wantsChromeHidden:hideChrome];
     SKNode *node = [self childNodeWithName:@"BackgroundCoverNode"];
     [node runAction:[SKAction fadeOutWithDuration:0.2]
          completion:^{ [node removeFromParent]; }];
