@@ -72,6 +72,9 @@
     static NSString *identifier = @"NewGameCell";
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    //cell.backgroundColor = [EXQConf colorNavBarOrange];
+    UIView *v = [cell viewWithTag:90];
+    v.backgroundColor = [EXQConf colorNavBarOrange];
     
     return cell;
 }
@@ -84,6 +87,8 @@
     
     UIImageView *iv = (UIImageView *)[cell viewWithTag:100];
     iv.image = [UIImage imageNamed:[self.gameImages objectAtIndex:indexPath.row]];
+    UIView *v = [cell viewWithTag:90];
+    v.backgroundColor = [EXQConf colorBorderOrange];
     cell.backgroundView = nil; //[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo-frame.png"]];
     
     return cell;
@@ -95,10 +100,12 @@
     static NSString *identifier = @"ActiveCell";
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+    //cell.backgroundColor = [UIColor yellowColor];
     
     UIImageView *iv = (UIImageView *)[cell viewWithTag:100];
     iv.image = [UIImage imageNamed:[self.appDelegate.activeImages objectAtIndex:indexPath.row]];
+    UIView *v = [cell viewWithTag:90];
+    v.backgroundColor = [EXQConf colorBorderOrange];
     cell.backgroundView = nil; //[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"photo-frame.png"]];
     
     return cell;
