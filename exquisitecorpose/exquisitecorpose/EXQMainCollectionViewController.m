@@ -10,6 +10,8 @@
 #import "EXQShareViewController.h"
 #import "EXQAppDelegate.h"
 #import "EXQCollectionHeaderView.h"
+#import "EXQGameState.h"
+#import "EXQMainGameViewController.h"
 #import <GameKit/GameKit.h>
 
 @interface EXQMainCollectionViewController () <GKTurnBasedEventHandlerDelegate>
