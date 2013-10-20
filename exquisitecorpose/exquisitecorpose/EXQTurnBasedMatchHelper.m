@@ -85,6 +85,7 @@ static EXQTurnBasedMatchHelper *sharedHelper = nil;
     NSLog(@"Authenticating local user...");
     if ([GKLocalPlayer localPlayer].authenticated == NO) {
         [[GKLocalPlayer localPlayer] setAuthenticateHandler:^(UIViewController *vc, NSError *err) {
+            self.userAuthenticated = YES;
             [self retrieveFriends];
             NSLog(@"AUTHENTICATED");
         }];
