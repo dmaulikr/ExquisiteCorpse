@@ -214,7 +214,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view tag="90" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uaX-Sc-vxR">
-                                            <rect key="frame" x="9" y="6" width="162" height="198"/>
+                                            <rect key="frame" x="9" y="20" width="162" height="198"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="new.png" translatesAutoresizingMaskIntoConstraints="NO" id="dia-hb-G2D">
@@ -244,23 +244,26 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view tag="90" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="niw-Na-Xlz">
-                                            <rect key="frame" x="9" y="6" width="162" height="198"/>
+                                            <rect key="frame" x="9" y="20" width="162" height="198"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bb-OV-rIj">
-                                            <rect key="frame" x="13" y="10" width="154" height="190"/>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2bb-OV-rIj">
+                                            <rect key="frame" x="13" y="24" width="154" height="190"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="154" id="BHg-0S-2vM"/>
                                                 <constraint firstAttribute="height" constant="190" id="wbs-JR-jqE"/>
                                             </constraints>
                                         </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="active.png" translatesAutoresizingMaskIntoConstraints="NO" id="wPX-3C-RAo">
+                                            <rect key="frame" x="122" y="0.0" width="57" height="57"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="2bb-OV-rIj" secondAttribute="bottom" constant="20" id="AZ2-rf-0j6"/>
-                                    <constraint firstItem="2bb-OV-rIj" firstAttribute="centerX" secondItem="mvQ-dS-Ywv" secondAttribute="centerX" id="h5D-Ir-hU6"/>
+                                    <constraint firstAttribute="bottom" secondItem="2bb-OV-rIj" secondAttribute="bottom" constant="6" id="AZ2-rf-0j6"/>
                                 </constraints>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="SME-0j-yIc">
@@ -397,6 +400,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="active.png" width="57" height="57"/>
         <image name="new.png" width="57" height="57"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
