@@ -63,11 +63,9 @@
     CGSize sz = CGSizeMake(d, d);
     CGRect r = CGRectMake(0, 0, d, d);
     
-    
     UIImage *img = [UIImage imageWithColor:color size:sz];
     UIButton *button = [[UIButton alloc] initWithFrame:r];
     [button setBackgroundImage:img forState:UIControlStateNormal];
-    button.center = CGPointMake(CGRectGetMaxX(self.view.bounds), CGRectGetMidY(self.view.bounds)-100);
     button.centerX = self.view.right;
 
     button.hidden = self.hiddenChrome;
