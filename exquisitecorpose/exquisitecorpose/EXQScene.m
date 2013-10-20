@@ -135,7 +135,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:1 visible:NO animated:NO];
             [self setMaskIndex:2 visible:NO animated:NO];
             [self setCanvasActiveAtIndex:NSNotFound];
-            [self showInstructionsForInitialSetup];
+            [self showPassAndPlayCoverWithText:@"Get ready! It's your turn."];
             break;
         }
         case EXQGamePhasePlayer1Turn:
@@ -365,7 +365,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
     [super touchesEnded:touches withEvent:event];
     
     if (self.gameState.gamePhase == EXQGamePhaseInitialSetup) {
-        [self updateGamePhase:EXQGamePhasePlayer1Turn animated:YES];
+        [self hidePassAndPlayCover];
         return;
     }
 
