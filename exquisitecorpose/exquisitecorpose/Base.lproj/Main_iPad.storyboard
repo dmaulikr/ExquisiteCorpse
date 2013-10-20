@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A584" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="hKO-30-fLG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="hKO-30-fLG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -380,7 +380,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkH-QJ-DBb">
-                                <rect key="frame" x="671" y="20" width="77" height="77"/>
+                                <rect key="frame" x="20" y="26" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="undo_icon.png">
@@ -391,11 +391,24 @@
                                     <action selector="undoStroke:" destination="vN1-sJ-mIL" eventType="touchUpInside" id="XdQ-cJ-ATe"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Vw-Nq-lti">
+                                <rect key="frame" x="678" y="26" width="77" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="done_icon.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="done:" destination="vN1-sJ-mIL" eventType="touchUpInside" id="vn6-Jf-KA3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="hxD-9C-Nsy"/>
                     <connections>
+                        <outlet property="doneButton" destination="1Vw-Nq-lti" id="EBr-C9-wxf"/>
                         <outlet property="undoButton" destination="BkH-QJ-DBb" id="jwE-Ur-fl4"/>
                         <outlet property="view" destination="1f0-cg-6Fd" id="xRF-LY-j5X"/>
                     </connections>
@@ -408,6 +421,7 @@
     <resources>
         <image name="active.png" width="57" height="57"/>
         <image name="automatch.png" width="450" height="225"/>
+        <image name="done_icon.png" width="77" height="77"/>
         <image name="findmyfriends.png" width="450" height="225"/>
         <image name="new.png" width="57" height="57"/>
         <image name="pass_play.png" width="450" height="225"/>

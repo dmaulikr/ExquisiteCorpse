@@ -10,6 +10,12 @@
 #import "EXQCanvas.h"
 #import "EXQGameState.h"
 
+@interface EXQMainGameViewController ()
+
+- (IBAction)done:(id)sender;
+
+@end
+
 @implementation EXQMainGameViewController
 
 - (void)viewDidLoad
@@ -48,8 +54,8 @@
 
 - (void)_EXQSetupDoneButton
 {
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
-    self.navigationItem.rightBarButtonItem = done;
+    //UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    //self.navigationItem.rightBarButtonItem = done;
 }
 
 #pragma mark - Drawing actions
@@ -94,6 +100,7 @@
 - (void)scene:(EXQScene *)scene wantsChromeHidden:(BOOL)hidden
 {
     self.undoButton.hidden = hidden;
+    self.doneButton.hidden = hidden;
 }
 
 
