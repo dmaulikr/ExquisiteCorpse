@@ -258,7 +258,7 @@
                                                 <constraint firstAttribute="height" constant="190" id="wbs-JR-jqE"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="active.png" translatesAutoresizingMaskIntoConstraints="NO" id="wPX-3C-RAo">
+                                        <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="active.png" translatesAutoresizingMaskIntoConstraints="NO" id="wPX-3C-RAo">
                                             <rect key="frame" x="122" y="0.0" width="57" height="57"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>

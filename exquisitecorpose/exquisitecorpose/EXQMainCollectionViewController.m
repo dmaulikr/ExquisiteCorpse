@@ -103,7 +103,12 @@
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     //cell.backgroundColor = [UIColor yellowColor];
-    
+    {
+        UIImageView *iv = (UIImageView*)[cell viewWithTag:200];
+        if (indexPath.row % 2 == 0) {
+            iv.hidden = YES;
+        }
+    }
     UIImageView *iv = (UIImageView *)[cell viewWithTag:100];
     iv.image = [UIImage imageNamed:[self.appDelegate.activeImages objectAtIndex:indexPath.row]];
     UIView *v = [cell viewWithTag:90];
