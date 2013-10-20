@@ -10,6 +10,8 @@
 #import "EXQDrawingState.h"
 #import "EXQGameState.h"
 #import "EXQConf.h"
+#import "UIImage+Helpers.h"
+#import "EXQAppDelegate.h"
 
 const CGFloat kEXQCanvasHeight = 328;
 const CGFloat kEXQCanvas1YOffset = 100;
@@ -180,6 +182,14 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self.dottedLine2 runAction:[SKAction fadeOutWithDuration:duration] completion:^{
                 [self.world removeChildrenInArray:@[self.dottedLine2]];
             }];
+            
+            UIImage *img1 = [self.playerCanvas1 snapshot];
+            UIImage *img2 = [self.playerCanvas2 snapshot];
+            UIImage *img3 = [self.playerCanvas3 snapshot];
+            UIImage *final = [UIImage concatenateImagesWithVerticalFlow:@[img1, img2, img3]];
+            
+            EXQAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+            [delegate.activeImages addObject:final];
             break;
         }
     }

@@ -11,6 +11,34 @@
 
 @implementation UIImage (EXQHelpers)
 
++ (UIImage*)concatenateImagesWithVerticalFlow:(NSArray*)images
+{
+    CGFloat h = 0., w=0.;
+    for (UIImage *img in images) {
+        h += img.size.height;
+        w = MAX(w, img.size.width);
+    }
+    
+    CGSize sz = CGSizeMake(w, h);
+    
+    UIGraphicsBeginImageContext(sz);
+
+    CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(), [UIColor whiteColor].CGColor);
+    CGContextFillRect(UIGraphicsGetCurrentContext(), (CGRect){CGPointZero, sz});
+    
+    CGPoint cur = CGPointZero;
+    for (UIImage *img in images) {
+        [img drawAtPoint:cur];
+        cur = CGPointMake(0, cur.y + img.size.height);
+    }
+    
+    id img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+
+    
+}
+
 + (UIImage*)transparentImageWithSize:(CGSize)s
 {
     UIGraphicsBeginImageContext(s);

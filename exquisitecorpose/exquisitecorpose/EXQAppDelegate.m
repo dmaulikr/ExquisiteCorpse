@@ -33,7 +33,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.activeImages = [NSMutableArray array];
-    self.activeImages = [NSMutableArray arrayWithArray:@[@"download.jpeg",@"download1.jpeg",@"download2.jpeg"]];
+    //self.activeImages = [NSMutableArray arrayWithArray:@[@"download.jpeg",@"download1.jpeg",@"download2.jpeg"]];
+    
+    for (NSString *name in @[@"download.jpeg",@"download1.jpeg",@"download2.jpeg"]) {
+        [self.activeImages addObject:[UIImage imageNamed:name]];
+    }
 	UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window = window;
 	
