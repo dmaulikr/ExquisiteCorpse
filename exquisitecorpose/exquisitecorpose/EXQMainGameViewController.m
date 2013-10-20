@@ -39,7 +39,7 @@
     self.scene = scene;
     
     // Configure the scene
-    scene.gameState = [EXQGameState bootstrapGameState];
+    scene.gameState = self.gameState;
     
     // Present the scene
     [skView presentScene:scene];

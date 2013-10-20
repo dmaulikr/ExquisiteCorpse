@@ -186,7 +186,8 @@
 - (void)newViewControllerStartedLocalGame:(EXQNewGameViewController *)newViewController
 {
     EXQMainGameViewController *vc = (EXQMainGameViewController *)[self viewControllerFromStoryboard:@"EXQGameVC"];
-    vc.gameState = [EXQGameState bootstrapGameState];
+    vc.gameState = [EXQGameState newLocalGameState];
+    vc.passAndPlay = YES;
     NSAssert(vc, @"wuh woh");
 
     // Do it all at once

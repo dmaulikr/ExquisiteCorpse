@@ -32,6 +32,13 @@ NSString * const kEXQGameStateSerializationKeyStrokesPlayer3 = @"StrokesPlayer3"
     return gameState;
 }
 
++ (EXQGameState *)newLocalGameState
+{
+    EXQGameState *gameState = [self gameState];
+    // Configure it
+    return gameState;
+}
+
 #pragma mark - NSCoding
 
 - (id)initWithCoder:(NSCoder *)decoder

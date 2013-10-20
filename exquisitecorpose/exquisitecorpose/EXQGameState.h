@@ -28,6 +28,7 @@ typedef enum : NSInteger {
 // Setup
 + (EXQGameState *)gameState;
 + (EXQGameState *)bootstrapGameState;       // Boostrap data
++ (EXQGameState *)newLocalGameState;
 
 
 @end

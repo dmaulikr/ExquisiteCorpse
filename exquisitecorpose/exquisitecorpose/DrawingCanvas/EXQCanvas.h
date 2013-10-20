@@ -22,6 +22,8 @@
 
 // State
 @property (strong, nonatomic) NSMutableArray *strokes;
+@property (assign, getter = iSActive) BOOL active;
+- (void)setActive:(BOOL)active animated:(BOOL)animated;
 
 // Current stroke
 @property (strong, nonatomic) NSMutableArray *points;

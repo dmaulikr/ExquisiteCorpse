@@ -40,6 +40,22 @@ const BOOL kEXQRestrictToBounds = YES;
     self.userInteractionEnabled = YES;
 }
 
+#pragma mark - State
+
+- (void)setActive:(BOOL)active animated:(BOOL)animated
+{
+    _active = active;
+    NSTimeInterval duration = animated ? 0.2 : 0;
+    if (active) {
+        [self removeActionForKey:@"Colorize"];
+    } else {
+        SKAction *colorize = [SKAction colorizeWithColor:[SKColor colorWithWhite:0.8 alpha:1]
+                                        colorBlendFactor:0.8
+                                                duration:duration];
+        [self runAction:colorize withKey:@"Colorize"];
+    }
+}
+
 #pragma mark - Strokes
 
 - (void)startStroke
