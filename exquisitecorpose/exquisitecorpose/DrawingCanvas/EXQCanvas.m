@@ -70,6 +70,7 @@ const BOOL kEXQRestrictToBounds = YES;
     [self.strokes addObject:self.currentStroke];
     self.currentStroke = nil;
     self.points = nil;
+    [self redrawAllStrokes];
 }
 
 - (void)addPoint:(CGPoint)point

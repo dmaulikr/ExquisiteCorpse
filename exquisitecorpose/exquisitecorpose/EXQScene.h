@@ -44,6 +44,10 @@
 // Show Cover
 - (void)showCoverNodeWithText:(NSString *)text;
 
+// Holy moley
+@property (strong, nonatomic) UIImage *snapshot1;
+@property (strong, nonatomic) UIImage *snapshot2;
+@property (strong, nonatomic) UIImage *snapshot3;
 
 
 @end

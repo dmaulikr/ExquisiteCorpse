@@ -154,6 +154,14 @@ const CGFloat kEXQCanvas1YOffset = 100;
         }
         case EXQGamePhasePlayer2Turn:
         {
+            self.snapshot1 = [self.playerCanvas1 snapshot];
+            SKSpriteNode *fake1 = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:self.snapshot1]];
+            fake1.size = self.playerCanvas1.size;
+            fake1.position = self.playerCanvas1.position;
+            [self.playerCanvas1.parent addChild:fake1];
+            [self.playerCanvas1 removeFromParent];
+            self.playerCanvas1 = [[EXQCanvas alloc] init];
+            
             [self setMaskIndex:0 visible:YES animated:YES];
             [self setMaskIndex:1 visible:NO animated:YES];
             [self setMaskIndex:2 visible:YES animated:YES];
@@ -162,6 +170,14 @@ const CGFloat kEXQCanvas1YOffset = 100;
         }
         case EXQGamePhasePlayer3Turn:
         {
+            self.snapshot2 = [self.playerCanvas2 snapshot];
+            SKSpriteNode *fake2 = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:self.snapshot2]];
+            fake2.size = self.playerCanvas2.size;
+            fake2.position = self.playerCanvas2.position;
+            [self.playerCanvas2.parent addChild:fake2];
+            [self.playerCanvas2 removeFromParent];
+            self.playerCanvas2 = [[EXQCanvas alloc] init];
+
             [self setMaskIndex:0 visible:YES animated:YES];
             [self setMaskIndex:1 visible:YES animated:YES];
             [self setMaskIndex:2 visible:NO animated:YES];
@@ -192,10 +208,10 @@ const CGFloat kEXQCanvas1YOffset = 100;
 //                [self.world removeChildrenInArray:@[self.dottedLine2]];
             }];
             
-            UIImage *img1 = [self.playerCanvas1 snapshot];
-            UIImage *img2 = [self.playerCanvas2 snapshot];
-            UIImage *img3 = [self.playerCanvas3 snapshot];
-            UIImage *final = [UIImage concatenateImagesWithVerticalFlow:@[img1, img2, img3]];
+//            UIImage *img1 = [self.playerCanvas1 snapshot];
+//            UIImage *img2 = [self.playerCanvas2 snapshot];
+//            UIImage *img3 = [self.playerCanvas3 snapshot];
+            UIImage *final = [UIImage concatenateImagesWithVerticalFlow:@[self.snapshot1, self.snapshot1, self.snapshot1]];
             
             EXQAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
             [delegate.activeImages addObject:final];
