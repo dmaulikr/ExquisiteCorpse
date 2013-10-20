@@ -169,6 +169,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
         case EXQGamePhaseFinished:
         default:
         {
+            [self.delegate scene:self wantsChromeHidden:YES];
             [self setMaskIndex:0 visible:NO animated:YES];
             [self setMaskIndex:1 visible:NO animated:YES];
             [self setMaskIndex:2 visible:NO animated:YES];
@@ -306,7 +307,8 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 - (void)hidePassAndPlayCover
 {
-    [self.delegate scene:self wantsChromeHidden:NO];
+    BOOL hideChrome = self.gameState.gamePhase == EXQGamePhaseFinished;
+    [self.delegate scene:self wantsChromeHidden:hideChrome];
     SKNode *node = [self childNodeWithName:@"BackgroundCoverNode"];
     [node runAction:[SKAction fadeOutWithDuration:0.2]
          completion:^{ [node removeFromParent]; }];
