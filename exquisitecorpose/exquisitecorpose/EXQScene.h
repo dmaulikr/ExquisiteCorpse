@@ -17,9 +17,13 @@
 @interface EXQScene : SKScene
 
 // Canvases
+@property (strong, nonatomic) SKNode *world;
 @property (strong, nonatomic) EXQCanvas *playerCanvas1;
 @property (strong, nonatomic) EXQCanvas *playerCanvas2;
 @property (strong, nonatomic) EXQCanvas *playerCanvas3;
+@property (strong, nonatomic) SKShapeNode *mask1;
+@property (strong, nonatomic) SKShapeNode *mask2;
+@property (strong, nonatomic) SKShapeNode *mask3;
 @property (strong, nonatomic) SKShapeNode *dottedLine1;
 @property (strong, nonatomic) SKShapeNode *dottedLine2;
 

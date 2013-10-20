@@ -33,6 +33,10 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 - (void)_EXQSetupCanvases
 {
+    // World
+    self.world = [SKNode node];
+    [self addChild:self.world];
+    
     CGSize size = CGSizeMake(self.size.width, kEXQCanvasHeight);
 
     // Canvases
@@ -43,12 +47,23 @@ const CGFloat kEXQCanvas1YOffset = 100;
     canvas3.position = CGPointMake(round(size.width / 2.0), round(size.height / 2.0));
     canvas2.position = CGPointMake(canvas3.position.x, canvas3.position.y + size.height);
     canvas1.position = CGPointMake(canvas3.position.x, canvas2.position.y + size.height);
-    [self addChild:canvas1];
-    [self addChild:canvas2];
-    [self addChild:canvas3];
+    [self.world addChild:canvas1];
+    [self.world addChild:canvas2];
+    [self.world addChild:canvas3];
     self.playerCanvas1 = canvas1;
     self.playerCanvas2 = canvas2;
     self.playerCanvas3 = canvas3;
+    
+    // Masks
+    SKSpriteNode *mask1 = [SKSpriteNode spriteNodeWithTexture:nil size:canvas1.size];
+    SKSpriteNode *mask2 = [SKSpriteNode spriteNodeWithTexture:nil size:canvas2.size];
+    SKSpriteNode *mask3 = [SKSpriteNode spriteNodeWithTexture:nil size:canvas3.size];
+    mask1.position = canvas1.position;
+    mask2.position = canvas2.position;
+    mask3.position = canvas3.position;
+    [self.world addChild:mask1];
+    [self.world addChild:mask2];
+    [self.world addChild:mask3];
     
     // Lines
     SKShapeNode *line1 = [SKShapeNode node];
@@ -69,8 +84,8 @@ const CGFloat kEXQCanvas1YOffset = 100;
     [bezierPath2 addLineToPoint:CGPointMake(size.width, y2)];
     line2.path = bezierPath2.CGPath;
     
-    [self addChild:line1];
-    [self addChild:line2];
+    [self.world addChild:line1];
+    [self.world addChild:line2];
     self.dottedLine1 = line1;
     self.dottedLine2 = line2;
 }
@@ -85,24 +100,103 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 #pragma mark - Changing phase
 
-- (void)updateForGamePhase:(EXQGamePhase)gamePhase animated:(BOOL)animated
+- (NSArray *)masks
 {
-    EXQCanvas *activeCanvas = [self activeCanvasForPhase:gamePhase];
-    for (EXQCanvas *canvas in @[self.playerCanvas1, self.playerCanvas2, self.playerCanvas3]) {
-        [canvas setActive:(canvas == activeCanvas) animated:YES];
-    }
+    return @[self.mask1, self.mask2, self.mask3];
 }
 
-- (EXQCanvas *)activeCanvasForPhase:(EXQGamePhase)phase
+- (NSArray *)canvases
 {
-    switch (phase) {
-        case EXQGamePhaseInitialSetup:      { return nil; }
-        case EXQGamePhasePlayer1Turn:       { return self.playerCanvas1; }
-        case EXQGamePhasePlayer2Turn:       { return self.playerCanvas2; }
-        case EXQGamePhasePlayer3Turn:       { return self.playerCanvas3; }
+    return @[self.playerCanvas1, self.playerCanvas2, self.playerCanvas3];
+}
+
+- (void)updateForGamePhase:(EXQGamePhase)gamePhase animated:(BOOL)animated
+{
+    [self hideInstructionsForInitialSetup];
+    CGPoint newPositionForWorld = CGPointZero;
+    switch (gamePhase) {
+        case EXQGamePhaseInitialSetup:
+        {
+            [self setMaskIndex:0 visible:NO animated:NO];
+            [self setMaskIndex:1 visible:NO animated:NO];
+            [self setMaskIndex:2 visible:NO animated:NO];
+            [self showInstructionsForInitialSetup];
+            break;
+        }
+        case EXQGamePhasePlayer1Turn:
+        {
+            [self setMaskIndex:0 visible:NO animated:YES];
+            [self setMaskIndex:1 visible:YES animated:YES];
+            [self setMaskIndex:2 visible:YES animated:YES];
+            newPositionForWorld = CGPointMake(0, 200);
+            break;
+        }
+        case EXQGamePhasePlayer2Turn:
+        {
+            [self setMaskIndex:0 visible:YES animated:YES];
+            [self setMaskIndex:1 visible:NO animated:YES];
+            [self setMaskIndex:2 visible:YES animated:YES];
+            break;
+        }
+        case EXQGamePhasePlayer3Turn:
+        {
+            [self setMaskIndex:0 visible:YES animated:YES];
+            [self setMaskIndex:1 visible:YES animated:YES];
+            [self setMaskIndex:2 visible:NO animated:YES];
+            newPositionForWorld = CGPointMake(0, -200);
+            break;
+        }
         case EXQGamePhaseFinished:
-        default:                            { return nil; }
+        default:
+        {
+            [self setMaskIndex:0 visible:NO animated:YES];
+            [self setMaskIndex:1 visible:NO animated:YES];
+            [self setMaskIndex:2 visible:NO animated:YES];
+            break;
+        }
     }
+    
+    NSTimeInterval duration = animated ? 0.2 : 0;
+    SKAction *wait = [SKAction waitForDuration:duration];
+    SKAction *moveWorld = [SKAction moveTo:newPositionForWorld duration:duration];
+    SKAction *sequence = [SKAction sequence:@[ wait, moveWorld ]];
+    [self.world runAction:sequence];
+}
+
+- (void)setMaskIndex:(NSInteger)index visible:(BOOL)visible animated:(BOOL)animated
+{
+    if (visible)
+        [self updateTextureForMaskIndex:index];
+    
+    CGFloat alpha = visible ? 1 : 0;
+    NSTimeInterval duration = animated ? 0.2 : 0;
+    SKSpriteNode *mask = [self masks][index];
+    [mask runAction:[SKAction fadeAlphaTo:alpha duration:duration]];
+}
+
+- (void)updateTextureForMaskIndex:(NSInteger)index
+{
+    EXQCanvas *canvas = [self canvases][index];
+    SKSpriteNode *mask = [self masks][index];
+    CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"
+                                keysAndValues:@"inputRadius", @80, nil];
+    mask.texture = [canvas.texture textureByApplyingCIFilter:blur];
+}
+
+- (void)showInstructionsForInitialSetup
+{
+    SKLabelNode *help = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    help.text = @"REPLACE: Tap to start";
+    help.fontSize = 26;
+    help.name = @"HelpText";
+    [self.world addChild:help];
+}
+
+- (void)hideInstructionsForInitialSetup
+{
+    SKLabelNode *help = (SKLabelNode *)[self.world childNodeWithName:@"HelpText"];
+    [help runAction:[SKAction fadeOutWithDuration:0.2]
+         completion:^{ [help removeFromParent]; }];
 }
 
 #pragma mark - Canvas delegate
@@ -120,6 +214,30 @@ const CGFloat kEXQCanvas1YOffset = 100;
 - (CGFloat)drawingOpacityForCanvas:(EXQCanvas *)canvas
 {
     return self.drawingState.opacity;
+}
+
+#pragma mark - Responder
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesCancelled:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesEnded:touches withEvent:event];
+    if (self.gameState.gamePhase == EXQGamePhaseInitialSetup)
+        [self updateForGamePhase:EXQGamePhasePlayer1Turn animated:YES];
 }
 
 
