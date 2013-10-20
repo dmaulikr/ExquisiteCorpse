@@ -144,7 +144,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:1 visible:YES animated:YES];
             [self setMaskIndex:2 visible:YES animated:YES];
             [self setCanvasActiveAtIndex:0];
-            newPositionForWorld = CGPointMake(0, -200);
+            newPositionForWorld = CGPointMake(0, -kEXQCanvasHeight);
             break;
         }
         case EXQGamePhasePlayer2Turn:
@@ -161,7 +161,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:1 visible:YES animated:YES];
             [self setMaskIndex:2 visible:NO animated:YES];
             [self setCanvasActiveAtIndex:2];
-            newPositionForWorld = CGPointMake(0, 200);
+            newPositionForWorld = CGPointMake(0, kEXQCanvasHeight);
             break;
         }
         case EXQGamePhaseFinished:
