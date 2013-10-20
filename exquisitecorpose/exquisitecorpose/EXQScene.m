@@ -254,42 +254,40 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 - (void)showPassAndPlayCoverWithText:(NSString *)text
 {
+    [self.delegate scene:self wantsChromeHidden:YES];
+    
     UIImage *image = [self newSnapshotImageForRect:self.frame];
     SKTexture *tex = [SKTexture textureWithImage:image];
-    SKSpriteNode *bg = [SKSpriteNode spriteNodeWithTexture:tex];
-    
-    SKEffectNode *effectNode = [SKEffectNode node];
-    effectNode.shouldEnableEffects = YES;
-    effectNode.shouldRasterize = YES;
     CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"
-                                keysAndValues:@"inputRadius", @80, nil];
-    effectNode.filter = blur;
-    [effectNode addChild:bg];
-    effectNode.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0 - 30);
-    [self addChild:effectNode];
-    [bg runAction:[SKAction colorizeWithColor:[SKColor redColor] colorBlendFactor:0.6 duration:0.2]];
-//    
-//    
-//    
-//    
-//    
-//
-//    SKLabelNode *textNode = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-//    textNode.text = text;
-//    textNode.fontSize = 26;
-//    textNode.fontColor = [EXQConf colorTextWhite];
-//    textNode.position = CGPointMake(0, -11);
-//    
-//    SKSpriteNode *background = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:textNode.frame.size];
-//    background.name = @"BackgroundCoverNode";
-//    background.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
-//    [background addChild:textNode];
-//    [self.world addChild:background];
+                                keysAndValues:@"inputRadius", @40, nil];
+    SKTexture *blurredTex = [tex textureByApplyingCIFilter:blur];
+
+    SKSpriteNode *cover = [SKSpriteNode spriteNodeWithColor:[UIColor yellowColor] size:self.size];
+//    SKSpriteNode *cover = [SKSpriteNode spriteNodeWithTexture:blurredTex];
+    cover.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0 - 30);
+    cover.name = @"BackgroundCoverNode";
+    cover.alpha = 0;
+    [self addChild:cover];
+    
+    SKLabelNode *textNode = [SKLabelNode labelNodeWithFontNamed:@"HelveticaNeue"];
+    textNode.text = text;
+    textNode.fontSize = 26;
+    textNode.fontColor = [EXQConf colorTextWhite];
+    textNode.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
+    [cover addChild:textNode];
+
+    [cover runAction:[SKAction fadeInWithDuration:0.2]
+          completion:^{
+              //
+          }];
 }
 
 - (void)hidePassAndPlayCover
 {
-//    [[self.world childNodeWithName:@"BackgroundCoverNode"] removeFromParent];
+    [self.delegate scene:self wantsChromeHidden:NO];
+    SKNode *node = [self childNodeWithName:@"BackgroundCoverNode"];
+    [node runAction:[SKAction fadeOutWithDuration:0.2]
+         completion:^{ [node removeFromParent]; }];
 }
 
 #pragma mark - Pass and play
