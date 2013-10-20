@@ -43,6 +43,7 @@
 
 - (IBAction)startLocalGame:(id)sender
 {
+    [self.delegate newViewControllerStartedLocalGame:self];
 }
 
 

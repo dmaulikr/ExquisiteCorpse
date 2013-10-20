@@ -185,10 +185,13 @@
 
 - (void)newViewControllerStartedLocalGame:(EXQNewGameViewController *)newViewController
 {
-    __weak EXQMainCollectionViewController *weakSelf = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-        // Push
-    }];
+    EXQMainGameViewController *vc = (EXQMainGameViewController *)[self viewControllerFromStoryboard:@"EXQGameVC"];
+    vc.gameState = [EXQGameState bootstrapGameState];
+    NSAssert(vc, @"wuh woh");
+
+    // Do it all at once
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Transition to game
