@@ -12,4 +12,6 @@
 - (NSData*)pixelData;
 - (UIImage*)crop:(UIEdgeInsets)insets;
 
++ (UIImage*)concatenateImagesWithVerticalFlow:(NSArray*)images;
+
 @end
