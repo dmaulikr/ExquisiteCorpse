@@ -21,11 +21,11 @@
 @property (strong, nonatomic) EXQCanvas *playerCanvas1;
 @property (strong, nonatomic) EXQCanvas *playerCanvas2;
 @property (strong, nonatomic) EXQCanvas *playerCanvas3;
-@property (strong, nonatomic) SKShapeNode *mask1;
-@property (strong, nonatomic) SKShapeNode *mask2;
-@property (strong, nonatomic) SKShapeNode *mask3;
-@property (strong, nonatomic) SKShapeNode *dottedLine1;
-@property (strong, nonatomic) SKShapeNode *dottedLine2;
+@property (strong, nonatomic) SKSpriteNode *mask1;
+@property (strong, nonatomic) SKSpriteNode *mask2;
+@property (strong, nonatomic) SKSpriteNode *mask3;
+@property (strong, nonatomic) SKSpriteNode *dottedLine1;
+@property (strong, nonatomic) SKSpriteNode *dottedLine2;
 
 // Delegate
 @property (weak, nonatomic) id<EXQSceneDelegate> delegate;

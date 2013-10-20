@@ -11,6 +11,8 @@
 		035396161813324200CFCACC /* EXQGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 035396151813324200CFCACC /* EXQGameState.m */; };
 		03539619181385CE00CFCACC /* EXQScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 03539618181385CE00CFCACC /* EXQScene.m */; };
 		0353961C1813896900CFCACC /* EXQDrawingState.m in Sources */ = {isa = PBXBuildFile; fileRef = 0353961B1813896900CFCACC /* EXQDrawingState.m */; };
+		0353961F18140AC100CFCACC /* dashed_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0353961D18140AC100CFCACC /* dashed_line@2x.png */; };
+		0353962018140AC100CFCACC /* dashed_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 0353961E18140AC100CFCACC /* dashed_line.png */; };
 		0A865DF5B8B346B392BBFCCB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F1184049DE482EB74C7792 /* libPods.a */; };
 		6356FB961812D7FA003AFDB3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FB951812D7FA003AFDB3 /* Foundation.framework */; };
 		6356FB981812D7FA003AFDB3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FB971812D7FA003AFDB3 /* CoreGraphics.framework */; };
@@ -113,6 +115,8 @@
 		03539618181385CE00CFCACC /* EXQScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQScene.m; sourceTree = "<group>"; };
 		0353961A1813896900CFCACC /* EXQDrawingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQDrawingState.h; sourceTree = "<group>"; };
 		0353961B1813896900CFCACC /* EXQDrawingState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQDrawingState.m; sourceTree = "<group>"; };
+		0353961D18140AC100CFCACC /* dashed_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashed_line@2x.png"; sourceTree = "<group>"; };
+		0353961E18140AC100CFCACC /* dashed_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashed_line.png; sourceTree = "<group>"; };
 		4DF7EE3C56BF47EBAE4D2E5A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6356FB921812D7FA003AFDB3 /* exquisitecorpose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exquisitecorpose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6356FB951812D7FA003AFDB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -374,6 +378,8 @@
 		6356FBF11813009F003AFDB3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0353961D18140AC100CFCACC /* dashed_line@2x.png */,
+				0353961E18140AC100CFCACC /* dashed_line.png */,
 				63FE3C8B181387EA00C324EA /* automatch.png */,
 				63FE3C8C181387EA00C324EA /* automatch@2x.png */,
 				63FE3C8D181387EA00C324EA /* findmyfriends.png */,
@@ -571,6 +577,7 @@
 				6356FC3818130A03003AFDB3 /* download6.jpeg in Resources */,
 				63FE3C86181386DB00C324EA /* new@2x.png in Resources */,
 				63FE3C95181387EA00C324EA /* findmyfriends.png in Resources */,
+				0353961F18140AC100CFCACC /* dashed_line@2x.png in Resources */,
 				6356FC3A18130A03003AFDB3 /* images1.jpeg in Resources */,
 				63FE3C98181387EA00C324EA /* pass_play@2x.png in Resources */,
 				6356FC4218130A03003AFDB3 /* images9.jpeg in Resources */,
@@ -592,6 +599,7 @@
 				63FE3C88181386DB00C324EA /* reveal@2x.png in Resources */,
 				63FE3C80181386DB00C324EA /* done_icon@2x.png in Resources */,
 				63FE3C84181386DB00C324EA /* frankendraw__app_icon@2x.png in Resources */,
+				0353962018140AC100CFCACC /* dashed_line.png in Resources */,
 				6356FC4118130A03003AFDB3 /* images8.jpeg in Resources */,
 				6356FC3718130A03003AFDB3 /* download5.jpeg in Resources */,
 				6356FC4618130A03003AFDB3 /* images14.jpeg in Resources */,

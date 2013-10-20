@@ -61,29 +61,22 @@ const CGFloat kEXQCanvas1YOffset = 100;
     mask1.position = canvas1.position;
     mask2.position = canvas2.position;
     mask3.position = canvas3.position;
+    for (SKSpriteNode *mask in @[mask1, mask2, mask3]) {
+        mask.userInteractionEnabled = NO;
+    }
+    
     [self.world addChild:mask1];
     [self.world addChild:mask2];
     [self.world addChild:mask3];
+    self.mask1 = mask1;
+    self.mask2 = mask2;
+    self.mask3 = mask3;
     
     // Lines
-    SKShapeNode *line1 = [SKShapeNode node];
-    SKShapeNode *line2 = [SKShapeNode node];
-    for (SKShapeNode *line in @[line1, line2]) {
-        line.strokeColor = [EXQConf colorViewBackgroundOrange];
-        line.fillColor   = nil;
-        line.lineWidth   = 5;
-    }
-    
-    CGFloat y2 = size.height, y1 = 2 * y2;
-    UIBezierPath *bezierPath1 = [UIBezierPath bezierPath];
-    [bezierPath1 moveToPoint:CGPointMake(0, y1)];
-    [bezierPath1 addLineToPoint:CGPointMake(size.width, y1)];
-    line1.path = bezierPath1.CGPath;
-    UIBezierPath *bezierPath2 = [UIBezierPath bezierPath];
-    [bezierPath2 moveToPoint:CGPointMake(0, y2)];
-    [bezierPath2 addLineToPoint:CGPointMake(size.width, y2)];
-    line2.path = bezierPath2.CGPath;
-    
+    SKSpriteNode *line1 = [SKSpriteNode spriteNodeWithImageNamed:@"dashed_line.png"];
+    SKSpriteNode *line2 = [SKSpriteNode spriteNodeWithImageNamed:@"dashed_line.png"];
+    line1.position = CGPointMake(size.width / 2.0, size.height * 2.0);
+    line2.position = CGPointMake(size.width / 2.0, size.height);
     [self.world addChild:line1];
     [self.world addChild:line2];
     self.dottedLine1 = line1;
@@ -120,6 +113,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:0 visible:NO animated:NO];
             [self setMaskIndex:1 visible:NO animated:NO];
             [self setMaskIndex:2 visible:NO animated:NO];
+            [self setCanvasActiveAtIndex:NSNotFound];
             [self showInstructionsForInitialSetup];
             break;
         }
@@ -128,7 +122,8 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:0 visible:NO animated:YES];
             [self setMaskIndex:1 visible:YES animated:YES];
             [self setMaskIndex:2 visible:YES animated:YES];
-            newPositionForWorld = CGPointMake(0, 200);
+            [self setCanvasActiveAtIndex:0];
+            newPositionForWorld = CGPointMake(0, -200);
             break;
         }
         case EXQGamePhasePlayer2Turn:
@@ -136,6 +131,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:0 visible:YES animated:YES];
             [self setMaskIndex:1 visible:NO animated:YES];
             [self setMaskIndex:2 visible:YES animated:YES];
+            [self setCanvasActiveAtIndex:1];
             break;
         }
         case EXQGamePhasePlayer3Turn:
@@ -143,7 +139,8 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:0 visible:YES animated:YES];
             [self setMaskIndex:1 visible:YES animated:YES];
             [self setMaskIndex:2 visible:NO animated:YES];
-            newPositionForWorld = CGPointMake(0, -200);
+            [self setCanvasActiveAtIndex:2];
+            newPositionForWorld = CGPointMake(0, 200);
             break;
         }
         case EXQGamePhaseFinished:
@@ -152,15 +149,26 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:0 visible:NO animated:YES];
             [self setMaskIndex:1 visible:NO animated:YES];
             [self setMaskIndex:2 visible:NO animated:YES];
+            [self setCanvasActiveAtIndex:NSNotFound];
             break;
         }
     }
     
-    NSTimeInterval duration = animated ? 0.2 : 0;
+    NSTimeInterval duration = animated ? 0.4 : 0;
     SKAction *wait = [SKAction waitForDuration:duration];
     SKAction *moveWorld = [SKAction moveTo:newPositionForWorld duration:duration];
     SKAction *sequence = [SKAction sequence:@[ wait, moveWorld ]];
     [self.world runAction:sequence];
+}
+
+- (void)setCanvasActiveAtIndex:(NSInteger)integer
+{
+    for (NSInteger i = 0; i < 3; i++) {
+        BOOL active = (i == integer);
+        EXQCanvas *canvas = [self canvases][i];
+        canvas.active = YES;
+        canvas.userInteractionEnabled = YES;
+    }
 }
 
 - (void)setMaskIndex:(NSInteger)index visible:(BOOL)visible animated:(BOOL)animated
@@ -185,10 +193,17 @@ const CGFloat kEXQCanvas1YOffset = 100;
 
 - (void)showInstructionsForInitialSetup
 {
-    SKLabelNode *help = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    help.text = @"REPLACE: Tap to start";
-    help.fontSize = 26;
+    SKLabelNode *text = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    text.text = @"REPLACE: Tap to start";
+    text.fontSize = 26;
+    text.fontColor = [EXQConf colorTextWhite];
+    text.position = CGPointMake(0, -11);
+    
+    SKSpriteNode *help = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:text.frame.size];
+    help.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
     help.name = @"HelpText";
+    [help addChild:text];
+    
     [self.world addChild:help];
 }
 
