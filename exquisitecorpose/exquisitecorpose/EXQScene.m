@@ -251,34 +251,57 @@ const CGFloat kEXQCanvas1YOffset = 100;
          completion:^{ [help removeFromParent]; }];
 }
 
+- (UIImage *)newSnapshotImageForRect:(CGRect)rect
+{
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0);
+    [self.view drawViewHierarchyInRect:rect afterScreenUpdates:YES];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 - (void)showPassAndPlayCoverWithText:(NSString *)text
 {
-    self.shouldEnableEffects = YES;
+    [self.delegate scene:self wantsChromeHidden:YES];
+    
+    UIImage *image = [self newSnapshotImageForRect:self.frame];
+    SKTexture *tex = [SKTexture textureWithImage:image];
+    CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"
+                                keysAndValues:@"inputRadius", @40, nil];
+    SKTexture *blurredTex = [tex textureByApplyingCIFilter:blur];
 
-    SKLabelNode *textNode = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    SKSpriteNode *cover = [SKSpriteNode spriteNodeWithColor:[UIColor yellowColor] size:self.size];
+//    SKSpriteNode *cover = [SKSpriteNode spriteNodeWithTexture:blurredTex];
+    cover.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0 - 30);
+    cover.name = @"BackgroundCoverNode";
+    cover.alpha = 0;
+    [self addChild:cover];
+    
+    SKLabelNode *textNode = [SKLabelNode labelNodeWithFontNamed:@"HelveticaNeue"];
     textNode.text = text;
     textNode.fontSize = 26;
     textNode.fontColor = [EXQConf colorTextWhite];
-    textNode.position = CGPointMake(0, -11);
-    
-    SKSpriteNode *background = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:textNode.frame.size];
-    background.name = @"BackgroundCoverNode";
-    background.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
-    [background addChild:textNode];
-    [self.world addChild:background];
+    textNode.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
+    [cover addChild:textNode];
+
+    [cover runAction:[SKAction fadeInWithDuration:0.2]
+          completion:^{
+              //
+          }];
 }
 
 - (void)hidePassAndPlayCover
 {
-    self.shouldEnableEffects = NO;
-//    [[self.world childNodeWithName:@"BackgroundCoverNode"] removeFromParent];
+    [self.delegate scene:self wantsChromeHidden:NO];
+    SKNode *node = [self childNodeWithName:@"BackgroundCoverNode"];
+    [node runAction:[SKAction fadeOutWithDuration:0.2]
+         completion:^{ [node removeFromParent]; }];
 }
 
 #pragma mark - Pass and play
 
 - (void)nextPassAndPlayTurn
 {
-    //return;
     switch (self.gameState.gamePhase) {
         case EXQGamePhasePlayer1Turn:
         {

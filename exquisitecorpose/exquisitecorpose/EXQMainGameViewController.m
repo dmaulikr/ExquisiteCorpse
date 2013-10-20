@@ -7,7 +7,6 @@
 //
 
 #import "EXQMainGameViewController.h"
-#import "EXQScene.h"
 #import "EXQCanvas.h"
 #import "EXQGameState.h"
 
@@ -37,6 +36,7 @@
     CGSize size = skView.bounds.size;
     EXQScene *scene = [EXQScene sceneWithSize:size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
+    scene.delegate = self;
     self.scene = scene;
     
     // Configure the scene
@@ -84,6 +84,17 @@
     }
 }
 
+#pragma mark - Scene delegate
+
+- (void)sceneDidFinishDrawing:(EXQScene *)scene
+{
+    //
+}
+
+- (void)scene:(EXQScene *)scene wantsChromeHidden:(BOOL)hidden
+{
+    self.undoButton.hidden = hidden;
+}
 
 
 @end
