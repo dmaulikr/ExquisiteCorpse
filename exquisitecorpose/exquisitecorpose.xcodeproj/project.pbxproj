@@ -10,6 +10,7 @@
 		0353960C1812DBEF00CFCACC /* EXQCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 0353960B1812DBEF00CFCACC /* EXQCanvas.m */; };
 		0353960F1812DC5E00CFCACC /* EXQDrawingState.m in Sources */ = {isa = PBXBuildFile; fileRef = 0353960E1812DC5E00CFCACC /* EXQDrawingState.m */; };
 		035396161813324200CFCACC /* EXQGameState.m in Sources */ = {isa = PBXBuildFile; fileRef = 035396151813324200CFCACC /* EXQGameState.m */; };
+		03539619181385CE00CFCACC /* EXQScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 03539618181385CE00CFCACC /* EXQScene.m */; };
 		0A865DF5B8B346B392BBFCCB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F1184049DE482EB74C7792 /* libPods.a */; };
 		6356FB961812D7FA003AFDB3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FB951812D7FA003AFDB3 /* Foundation.framework */; };
 		6356FB981812D7FA003AFDB3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6356FB971812D7FA003AFDB3 /* CoreGraphics.framework */; };
@@ -88,6 +89,8 @@
 		035396101812DCB400CFCACC /* CommonHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonHeaders.h; sourceTree = "<group>"; };
 		035396141813324200CFCACC /* EXQGameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQGameState.h; sourceTree = "<group>"; };
 		035396151813324200CFCACC /* EXQGameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQGameState.m; sourceTree = "<group>"; };
+		03539617181385CE00CFCACC /* EXQScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXQScene.h; sourceTree = "<group>"; };
+		03539618181385CE00CFCACC /* EXQScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EXQScene.m; sourceTree = "<group>"; };
 		4DF7EE3C56BF47EBAE4D2E5A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6356FB921812D7FA003AFDB3 /* exquisitecorpose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exquisitecorpose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6356FB951812D7FA003AFDB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -263,6 +266,8 @@
 				035396151813324200CFCACC /* EXQGameState.m */,
 				6356FBB71812D7FA003AFDB3 /* Images.xcassets */,
 				6356FB9E1812D7FA003AFDB3 /* Supporting Files */,
+				03539617181385CE00CFCACC /* EXQScene.h */,
+				03539618181385CE00CFCACC /* EXQScene.m */,
 			);
 			path = exquisitecorpose;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				6356FBDD1812E2DE003AFDB3 /* EXQMainGameViewController.m in Sources */,
 				6356FBE01812F427003AFDB3 /* EXQSketchView.m in Sources */,
 				6356FBE31812F469003AFDB3 /* EXQSketchViewController.m in Sources */,
+				03539619181385CE00CFCACC /* EXQScene.m in Sources */,
 				035396161813324200CFCACC /* EXQGameState.m in Sources */,
 				6356FBA81812D7FA003AFDB3 /* EXQAppDelegate.m in Sources */,
 				6356FC4B18132232003AFDB3 /* EXQMainCollectionViewController.m in Sources */,
