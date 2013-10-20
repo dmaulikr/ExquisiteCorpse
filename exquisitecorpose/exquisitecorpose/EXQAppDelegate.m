@@ -17,11 +17,18 @@
 
 @implementation EXQAppDelegate
 
-/*- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+
+- (void)setupAppearanceProxies
 {
-    // Override point for customization after application launch.
-    return YES;
-}*/
+    NSMutableDictionary *textAttributes = [@{} mutableCopy];
+    [textAttributes setValue:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [[UIToolbar appearance] setBarTintColor:[EXQConf colorNavBarOrange]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[EXQConf colorTextWhite]];
+    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:textAttributes forState:UIControlStateNormal];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -54,12 +61,7 @@
 	self.window.rootViewController = self.viewController;
 	[self.window makeKeyAndVisible];
     
-    NSMutableDictionary *textAttributes = [@{} mutableCopy];
-    [textAttributes setValue:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:176./255. green:65./255. blue:25./255. alpha:1.0]];
-    [[UINavigationBar appearance] setTitleTextAttributes:textAttributes];
-    [[UIBarButtonItem appearance] setTitleTextAttributes:textAttributes forState:UIControlStateNormal];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self setupAppearanceProxies];
     
     [[EXQTurnBasedMatchHelper sharedInstance] authenticateLocalUser];
 	return YES;
