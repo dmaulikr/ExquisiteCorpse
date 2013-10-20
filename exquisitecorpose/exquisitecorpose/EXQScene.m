@@ -30,6 +30,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
         self.filter = blur;
         self.shouldRasterize = YES;
         self.shouldEnableEffects = NO;
+        [self _createHackyMasks];
     }
     return self;
 }
@@ -187,7 +188,12 @@ const CGFloat kEXQCanvas1YOffset = 100;
     SKAction *wait = [SKAction waitForDuration:duration];
     SKAction *moveWorld = [SKAction moveTo:newPositionForWorld duration:duration];
     SKAction *sequence = [SKAction sequence:@[ wait, moveWorld ]];
-    [self.world runAction:sequence];
+    __weak EXQScene *weakSelf = self;
+    BOOL shouldShowMasks = (self.gameState.gamePhase == EXQGamePhasePlayer1Turn || self.gameState.gamePhase == EXQGamePhasePlayer2Turn || self.gameState.gamePhase == EXQGamePhasePlayer3Turn);
+    [self.world runAction:sequence
+               completion:^{
+                   [weakSelf setHackyMasksVisible:shouldShowMasks animated:YES];
+               }];
 }
 
 - (void)setCanvasActiveAtIndex:(NSInteger)integer
@@ -391,6 +397,32 @@ const CGFloat kEXQCanvas1YOffset = 100;
     
 }
 
+#pragma mark - Hacky masks
+
+NSString * const kEXQHackyTopMark = @"HackyTopMask";
+NSString * const kEXQHackyBottomMark = @"HackyBottomMask";
+
+- (void)_createHackyMasks
+{
+    CGFloat totalH = self.size.height - kEXQCanvasHeight;
+    CGFloat h = totalH / 2.0;
+    SKSpriteNode *top = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:CGSizeMake(self.size.width, h)];
+    top.position = CGPointMake(self.size.width / 2.0, self.size.height - h / 2.0);
+    SKSpriteNode *bottom = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:CGSizeMake(self.size.width, h)];
+    bottom.position = CGPointMake(self.size.width / 2.0, + h / 2.0);
+    top.alpha = 0, bottom.alpha = 0;
+    top.name = kEXQHackyTopMark, bottom.name = kEXQHackyBottomMark;
+    [self addChild:top];
+    [self addChild:bottom];
+}
+
+- (void)setHackyMasksVisible:(BOOL)visible animated:(BOOL)animated
+{
+    NSTimeInterval duration = animated ? 0.2 : 0;
+    SKAction *action = visible ? [SKAction fadeInWithDuration:duration] : [SKAction fadeOutWithDuration:duration];
+    [[self childNodeWithName:kEXQHackyTopMark] runAction:action];
+    [[self childNodeWithName:kEXQHackyBottomMark] runAction:action];
+}
 
 
 @end
