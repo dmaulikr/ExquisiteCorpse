@@ -35,7 +35,7 @@
     self.activeImages = [NSMutableArray array];
     //self.activeImages = [NSMutableArray arrayWithArray:@[@"download.jpeg",@"download1.jpeg",@"download2.jpeg"]];
     
-    for (NSString *name in @[@"download.jpeg",@"download1.jpeg",@"download2.jpeg"]) {
+    for (NSString *name in @[@"download.jpeg",@"download5.jpeg",@"download3.jpeg"]) {
         [self.activeImages addObject:[UIImage imageNamed:name]];
     }
 	UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

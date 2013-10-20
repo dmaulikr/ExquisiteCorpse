@@ -63,7 +63,6 @@
     CGSize sz = CGSizeMake(d, d);
     CGRect r = CGRectMake(0, 0, d, d);
     
-    
     UIImage *img = [UIImage imageWithColor:color size:sz];
     UIButton *button = [[UIButton alloc] initWithFrame:r];
     [button setBackgroundImage:img forState:UIControlStateNormal];
