@@ -220,10 +220,11 @@ const CGFloat kEXQCanvas1YOffset = 100;
 //                [self.world removeChildrenInArray:@[self.dottedLine2]];
             }];
             
+            self.snapshot3 = [self.playerCanvas3 snapshot];
 //            UIImage *img1 = [self.playerCanvas1 snapshot];
 //            UIImage *img2 = [self.playerCanvas2 snapshot];
 //            UIImage *img3 = [self.playerCanvas3 snapshot];
-            UIImage *final = [UIImage concatenateImagesWithVerticalFlow:@[self.snapshot1, self.snapshot1, self.snapshot1]];
+            UIImage *final = [UIImage concatenateImagesWithVerticalFlow:@[self.snapshot1, self.snapshot2, self.snapshot3]];
             
             EXQAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
             [delegate.activeImages addObject:final];
