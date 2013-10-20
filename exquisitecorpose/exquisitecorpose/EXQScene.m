@@ -65,9 +65,9 @@ const CGFloat kEXQCanvas1YOffset = 100;
         mask.userInteractionEnabled = NO;
     }
     
-    [self.world addChild:mask1];
-    [self.world addChild:mask2];
-    [self.world addChild:mask3];
+//    [self.world addChild:mask1];
+//    [self.world addChild:mask2];
+//    [self.world addChild:mask3];
     self.mask1 = mask1;
     self.mask2 = mask2;
     self.mask3 = mask3;
@@ -88,7 +88,21 @@ const CGFloat kEXQCanvas1YOffset = 100;
 - (void)setGameState:(EXQGameState *)gameState
 {
     _gameState = gameState;
-    [self updateForGamePhase:gameState.gamePhase animated:YES];
+    [self updateGamePhase:gameState.gamePhase animated:YES];
+}
+
+#pragma mark - Undo
+
+- (void)undoLastStrokeOnActiveCanvasAnimated:(BOOL)animated
+{
+    EXQCanvas *activeCanvas = nil;
+    if (self.gameState.gamePhase == EXQGamePhasePlayer1Turn)
+        activeCanvas = [self canvases][0];
+    else if (self.gameState.gamePhase == EXQGamePhasePlayer2Turn)
+        activeCanvas = [self canvases][1];
+    else if (self.gameState.gamePhase == EXQGamePhasePlayer2Turn)
+        activeCanvas = [self canvases][2];
+    [activeCanvas undoLastStrokeAnimated:YES];
 }
 
 #pragma mark - Changing phase
@@ -103,8 +117,9 @@ const CGFloat kEXQCanvas1YOffset = 100;
     return @[self.playerCanvas1, self.playerCanvas2, self.playerCanvas3];
 }
 
-- (void)updateForGamePhase:(EXQGamePhase)gamePhase animated:(BOOL)animated
+- (void)updateGamePhase:(EXQGamePhase)gamePhase animated:(BOOL)animated
 {
+    _gameState.gamePhase = gamePhase;
     [self hideInstructionsForInitialSetup];
     CGPoint newPositionForWorld = CGPointZero;
     switch (gamePhase) {
@@ -166,20 +181,24 @@ const CGFloat kEXQCanvas1YOffset = 100;
     for (NSInteger i = 0; i < 3; i++) {
         BOOL active = (i == integer);
         EXQCanvas *canvas = [self canvases][i];
-        canvas.active = YES;
-        canvas.userInteractionEnabled = YES;
+        canvas.active = active;
+        canvas.userInteractionEnabled = active;
     }
 }
 
 - (void)setMaskIndex:(NSInteger)index visible:(BOOL)visible animated:(BOOL)animated
 {
-    if (visible)
-        [self updateTextureForMaskIndex:index];
-    
-    CGFloat alpha = visible ? 1 : 0;
     NSTimeInterval duration = animated ? 0.2 : 0;
     SKSpriteNode *mask = [self masks][index];
-    [mask runAction:[SKAction fadeAlphaTo:alpha duration:duration]];
+    if (visible) {
+        [self updateTextureForMaskIndex:index];
+        mask.alpha = 0;
+        if (!mask.parent)
+            [self.world addChild:mask];
+        [mask runAction:[SKAction fadeInWithDuration:duration]];
+    } else {
+        [mask runAction:[SKAction fadeOutWithDuration:duration]];
+    }
 }
 
 - (void)updateTextureForMaskIndex:(NSInteger)index
@@ -199,10 +218,14 @@ const CGFloat kEXQCanvas1YOffset = 100;
     text.fontColor = [EXQConf colorTextWhite];
     text.position = CGPointMake(0, -11);
     
-    SKSpriteNode *help = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:text.frame.size];
+    SKSpriteNode *innerHelp = [SKSpriteNode spriteNodeWithColor:[EXQConf colorViewBackgroundOrange] size:text.frame.size];
+    innerHelp.position = CGPointZero; //CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
+    [innerHelp addChild:text];
+    
+    SKSpriteNode *help = [SKSpriteNode spriteNodeWithColor:[SKColor colorWithWhite:0 alpha:0.3] size:self.size];
     help.position = CGPointMake(self.size.width / 2.0, self.size.height / 2.0);
     help.name = @"HelpText";
-    [help addChild:text];
+    [help addChild:innerHelp];
     
     [self.world addChild:help];
 }
@@ -210,7 +233,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
 - (void)hideInstructionsForInitialSetup
 {
     SKLabelNode *help = (SKLabelNode *)[self.world childNodeWithName:@"HelpText"];
-    [help runAction:[SKAction fadeOutWithDuration:0.2]
+    [help runAction:[SKAction fadeOutWithDuration:0.3]
          completion:^{ [help removeFromParent]; }];
 }
 
@@ -252,7 +275,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
 {
     [super touchesEnded:touches withEvent:event];
     if (self.gameState.gamePhase == EXQGamePhaseInitialSetup)
-        [self updateForGamePhase:EXQGamePhasePlayer1Turn animated:YES];
+        [self updateGamePhase:EXQGamePhasePlayer1Turn animated:YES];
 }
 
 

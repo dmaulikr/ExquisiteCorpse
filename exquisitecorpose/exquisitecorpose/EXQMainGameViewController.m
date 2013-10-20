@@ -47,9 +47,9 @@
 
 #pragma mark - Drawing actions
 
-- (void)undoStroke:(id)sender
+- (IBAction)undoStroke:(id)sender
 {
-//    [self.scene.canvas undoStroke:sender];
+    [self.scene undoLastStrokeOnActiveCanvasAnimated:YES];
 }
 
 

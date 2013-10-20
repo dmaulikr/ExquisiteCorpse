@@ -27,6 +27,9 @@
 @property (strong, nonatomic) SKSpriteNode *dottedLine1;
 @property (strong, nonatomic) SKSpriteNode *dottedLine2;
 
+// Undo
+- (void)undoLastStrokeOnActiveCanvasAnimated:(BOOL)animated;
+
 // Delegate
 @property (weak, nonatomic) id<EXQSceneDelegate> delegate;
 
