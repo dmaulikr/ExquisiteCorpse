@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EXQCanvas.h"
 
 typedef enum : NSInteger {
     EXQGamePhaseInitialSetup = 0,
@@ -17,16 +18,16 @@ typedef enum : NSInteger {
 } EXQGamePhase;
 
 @interface EXQGameState : NSObject
-<NSCoding>
-
-// Setup
-+ (EXQGameState *)gameState;
-+ (EXQGameState *)bootstrapGameState;       // Boostrap data
+<NSCoding, EXQCanvasDelegate>
 
 @property (assign) EXQGamePhase gamePhase;
 @property (strong, nonatomic) NSArray *strokesForPlayer1;
 @property (strong, nonatomic) NSArray *strokesForPlayer2;
 @property (strong, nonatomic) NSArray *strokesForPlayer3;
+
+// Setup
++ (EXQGameState *)gameState;
++ (EXQGameState *)bootstrapGameState;       // Boostrap data
 
 
 @end

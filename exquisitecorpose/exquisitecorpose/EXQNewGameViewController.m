@@ -41,6 +41,11 @@
     }
 }
 
+- (IBAction)startLocalGame:(id)sender
+{
+}
+
+
 - (IBAction)presentGCTurnViewController:(id)sender {
     if ([EXQTurnBasedMatchHelper sharedInstance].gameCenterAvailable) {
         [[EXQTurnBasedMatchHelper sharedInstance] findMatchWithMinPlayers:3 maxPlayers:3 viewController:self];

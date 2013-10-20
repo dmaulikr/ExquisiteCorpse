@@ -7,7 +7,7 @@
 //
 
 #import "EXQMainGameViewController.h"
-#import "EXQMyScene.h"
+#import "EXQScene.h"
 #import "EXQCanvas.h"
 #import "EXQGameState.h"
 
@@ -34,9 +34,12 @@
     
     // Create and configure the scene.
     CGSize size = skView.bounds.size;
-    EXQMyScene *scene = [EXQMyScene sceneWithSize:size];
+    EXQScene *scene = [EXQScene sceneWithSize:size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     self.scene = scene;
+    
+    // Configure the scene
+    scene.gameState = [EXQGameState bootstrapGameState];
     
     // Present the scene
     [skView presentScene:scene];
@@ -46,7 +49,7 @@
 
 - (void)undoStroke:(id)sender
 {
-    [self.scene.canvas undoStroke:sender];
+//    [self.scene.canvas undoStroke:sender];
 }
 
 

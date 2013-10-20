@@ -7,7 +7,13 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-@class EXQDrawingState;
+@class EXQCanvas;
+
+@protocol EXQCanvasDelegate <NSObject>
+- (SKColor *)drawingColorForCanvas:(EXQCanvas *)canvas;
+- (CGFloat)drawingRadiusForCanvas:(EXQCanvas *)canvas;
+- (CGFloat)drawingOpacityForCanvas:(EXQCanvas *)canvas;
+@end
 
 @interface EXQCanvas : SKSpriteNode
 
@@ -15,7 +21,6 @@
 - (id)initWithSize:(CGSize)size;
 
 // State
-@property (strong, nonatomic) EXQDrawingState *drawingState;
 @property (strong, nonatomic) NSMutableArray *strokes;
 
 // Current stroke
@@ -28,5 +33,8 @@
 
 // UIImage Snapshots
 - (UIImage *)snapshot;
+
+// Delegate
+@property (weak, nonatomic) id<EXQCanvasDelegate> delegate;
 
 @end

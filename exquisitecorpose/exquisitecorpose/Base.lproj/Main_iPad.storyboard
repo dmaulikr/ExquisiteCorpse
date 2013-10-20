@@ -175,6 +175,9 @@
                                 <state key="normal" title="Local Play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="startLocalGame:" destination="AEV-Dc-9Dg" eventType="touchUpInside" id="f7R-gl-IfD"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
