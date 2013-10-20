@@ -135,7 +135,7 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:1 visible:NO animated:NO];
             [self setMaskIndex:2 visible:NO animated:NO];
             [self setCanvasActiveAtIndex:NSNotFound];
-            [self showInstructionsForInitialSetup];
+            [self showPassAndPlayCoverWithText:@"Get ready! It's your turn."];
             break;
         }
         case EXQGamePhasePlayer1Turn:
@@ -367,8 +367,18 @@ const CGFloat kEXQCanvas1YOffset = 100;
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
-    if (self.gameState.gamePhase == EXQGamePhaseInitialSetup)
-        [self updateGamePhase:EXQGamePhasePlayer1Turn animated:YES];
+    
+    if (self.gameState.gamePhase == EXQGamePhaseInitialSetup) {
+        [self hidePassAndPlayCover];
+        return;
+    }
+
+    // Is there a cover up?
+    SKNode *cover = [self childNodeWithName:@"BackgroundCoverNode"];
+    if (cover) {
+        [self hidePassAndPlayCover];
+    }
+    
 }
 
 
