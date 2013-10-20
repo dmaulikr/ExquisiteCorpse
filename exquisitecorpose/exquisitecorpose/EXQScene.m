@@ -175,11 +175,18 @@ const CGFloat kEXQCanvas1YOffset = 100;
             [self setMaskIndex:2 visible:NO animated:YES];
             [self setCanvasActiveAtIndex:NSNotFound];
             newPositionForWorld = CGPointZero;
-            [self.dottedLine1 runAction:[SKAction fadeOutWithDuration:duration] completion:^{
-                [self.world removeChildrenInArray:@[self.dottedLine1]];
+            
+            SKAction *wait = [SKAction waitForDuration:2];
+            SKAction *fade = [SKAction fadeAlphaTo:0.15 duration:0.7];
+            SKAction *sequence = [SKAction sequence:@[ wait, fade ]];
+            
+            [self.dottedLine1 runAction:sequence
+                             completion:^{
+//                [self.world removeChildrenInArray:@[self.dottedLine1]];
             }];
-            [self.dottedLine2 runAction:[SKAction fadeOutWithDuration:duration] completion:^{
-                [self.world removeChildrenInArray:@[self.dottedLine2]];
+            [self.dottedLine2 runAction:sequence
+                             completion:^{
+//                [self.world removeChildrenInArray:@[self.dottedLine2]];
             }];
             break;
         }
